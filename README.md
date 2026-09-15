@@ -295,13 +295,11 @@ npm run build
 
 # 👨‍💻 Author
 
-**Tharun Kumar Reddy**
+**Tharun Kumar Reddy**,**Abhishek Jajimoggala **
 
 Frontend Developer | React Developer
 
-GitHub: https://github.com/YOUR_USERNAME
-
-LinkedIn: https://linkedin.com/in/YOUR_PROFILE
+GitHub: https://github.com/abhishek-jajimoggala
 
 ---
 
