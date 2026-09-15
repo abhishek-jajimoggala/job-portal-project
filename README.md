@@ -295,7 +295,7 @@ npm run build
 
 # 👨‍💻 Author
 
-**Tharun Kumar Reddy**,**Abhishek Jajimoggala **
+**Tharun Kumar Reddy**,Abhishek Jajimoggala 
 
 Frontend Developer | React Developer
 
