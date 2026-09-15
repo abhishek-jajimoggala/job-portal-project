@@ -57,7 +57,7 @@ function Login() {
     <div className="container my-5">
       <div className="row justify-content-center">
 
-        <div className="col-md-5">
+        <div className="col-xl-4 col-lg-5 col-md-6 col-sm-10 col-12">
 
           <div className="card shadow border-0">
             <div className="card-body p-4">

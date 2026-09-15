@@ -241,3 +241,138 @@ body{
     font-size: 22px;
   }
 }
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .container{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* Navbar */
+  .navbar-brand{
+    font-size: 22px !important;
+  }
+
+  .navbar-nav{
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .navbar .btn{
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  /* Hero */
+  .hero-section{
+    padding: 60px 15px;
+  }
+
+  .hero-section h1{
+    font-size: 2rem !important;
+  }
+
+  .hero-section p{
+    font-size: 1rem !important;
+  }
+
+  /* Search */
+  .hero-section .form-control,
+  .hero-section .btn{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  /* Job Cards */
+  .job-card{
+    margin-bottom: 20px;
+  }
+
+  .job-card h4{
+    font-size: 18px;
+  }
+
+  .job-actions{
+    flex-direction: column;
+  }
+
+  .job-actions .btn{
+    width: 100%;
+  }
+
+  /* Companies */
+  .company-item{
+    min-width: 120px;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* Reviews */
+  .review-card{
+    margin-bottom: 15px;
+  }
+
+  /* Statistics */
+  .stat-card{
+    margin-bottom: 15px;
+  }
+
+  /* Login & Register */
+  .card-body{
+    padding: 20px !important;
+  }
+
+  .form-control{
+    font-size: 14px;
+  }
+
+  .btn{
+    width: 100%;
+  }
+
+  /* Profile */
+  .profile-card{
+    padding: 15px;
+  }
+
+  /* Tables */
+  .table-responsive{
+    overflow-x: auto;
+  }
+}
+
+/* Extra Small Devices */
+
+@media (max-width: 576px){
+
+  .section-title{
+    font-size: 22px !important;
+    text-align: center;
+  }
+
+  .hero-section h1{
+    font-size: 1.7rem !important;
+  }
+
+  .hero-section p{
+    font-size: 14px !important;
+  }
+
+  .company-item{
+    min-width: 100px;
+    font-size: 12px;
+  }
+
+  .navbar-brand{
+    font-size: 20px !important;
+  }
+
+  .card{
+    border-radius: 12px;
+  }
+}
