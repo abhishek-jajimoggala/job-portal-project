@@ -1,0 +1,243 @@
+/* =========================
+   GLOBAL THEME
+========================= */
+
+body{
+  background: #f4f7fc;
+  font-family: "Poppins", sans-serif;
+  color: #1f2937;
+}
+
+/* =========================
+   COMMON
+========================= */
+
+.card{
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.btn{
+  border-radius: 10px;
+  transition: all .3s ease;
+}
+
+.btn:hover{
+  transform: translateY(-2px);
+}
+
+.section-title{
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 25px;
+}
+
+/* =========================
+   ADMIN NAVBAR
+========================= */
+
+.admin-navbar{
+  background: linear-gradient(
+    135deg,
+    #1e3a8a,
+    #2563eb
+  ) !important;
+
+  padding: 14px 25px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.admin-navbar .navbar-brand{
+  color: #fff !important;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.admin-navbar .nav-link{
+  color: #fff !important;
+  font-weight: 600;
+  padding: 10px 14px !important;
+  border-radius: 10px;
+  transition: .3s;
+}
+
+.admin-navbar .nav-link:hover{
+  background: rgba(255,255,255,0.15);
+}
+
+.admin-logout-btn{
+  background: #ef4444;
+  border: none;
+  color: white;
+  font-weight: 600;
+}
+
+.admin-logout-btn:hover{
+  background: #dc2626;
+}
+
+.navbar-toggler{
+  border: 1px solid white !important;
+}
+
+.navbar-toggler-icon{
+  filter: brightness(0) invert(1);
+}
+
+/* =========================
+   ADMIN DASHBOARD
+========================= */
+
+.admin-dashboard{
+  min-height: 100vh;
+}
+
+.admin-card{
+  border-radius: 18px;
+  color: white;
+}
+
+.dashboard-title{
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+.dashboard-subtitle{
+  color: #6b7280;
+}
+
+.chart-card,
+.quick-card,
+.summary-card{
+  background: white;
+  border-radius: 18px;
+}
+
+/* =========================
+   JOB CARDS
+========================= */
+
+.job-card{
+  border-radius: 18px;
+  transition: .3s;
+}
+
+.job-card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.job-card .card-body{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.job-description{
+  min-height: 80px;
+}
+
+.skills-container{
+  min-height: 90px;
+}
+
+.job-actions{
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+}
+
+/* =========================
+   TOP COMPANIES CAROUSEL
+========================= */
+
+.company-slider{
+  width: 100%;
+  overflow: hidden;
+  background: white;
+  border-radius: 18px;
+  padding: 20px 0;
+}
+
+.company-track{
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: companyScroll 25s linear infinite;
+}
+
+.company-track:hover{
+  animation-play-state: paused;
+}
+
+.company-item{
+  min-width: 180px;
+  padding: 14px 20px;
+  text-align: center;
+  background: #eff6ff;
+  color: #1e40af;
+  border-radius: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: .3s;
+}
+
+.company-item:hover{
+  background: #2563eb;
+  color: white;
+}
+
+@keyframes companyScroll{
+  from{
+    transform: translateX(0);
+  }
+  to{
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================
+   REVIEWS
+========================= */
+
+.review-card{
+  transition: .3s;
+}
+
+.review-card:hover{
+  transform: translateY(-5px);
+}
+
+/* =========================
+   TABLES
+========================= */
+
+.table th{
+  background: #2563eb;
+  color: white;
+}
+
+.table td{
+  vertical-align: middle;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width:768px){
+
+  .section-title{
+    font-size: 24px;
+  }
+
+  .company-item{
+    min-width: 140px;
+  }
+
+  .admin-navbar .navbar-brand{
+    font-size: 22px;
+  }
+}

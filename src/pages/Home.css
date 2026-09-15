@@ -1,0 +1,168 @@
+/* =========================
+   HOME PAGE THEME
+========================= */
+
+.home-page {
+  background: linear-gradient(
+    135deg,
+    #f8fbff,
+    #eef5ff
+  );
+  min-height: 100vh;
+}
+
+/* Section Title */
+
+.section-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 25px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+
+/* =========================
+   JOB CARDS
+========================= */
+
+.job-card {
+  border: none;
+  border-radius: 18px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.job-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px
+    rgba(13, 110, 253, 0.2);
+}
+
+.job-card .card-body {
+  padding: 20px;
+}
+
+/* =========================
+   TOP COMPANIES
+========================= */
+
+.company-slider {
+  width: 100%;
+  overflow: hidden;
+  background: white;
+  border-radius: 20px;
+  padding: 25px 0;
+  box-shadow: 0 10px 25px
+    rgba(0, 0, 0, 0.08);
+}
+
+.company-track {
+  display: flex;
+  width: max-content;
+  animation: companyScroll 25s linear infinite;
+}
+
+.company-track:hover {
+  animation-play-state: paused;
+}
+
+.company-item {
+  flex-shrink: 0;
+  margin-right: 25px;
+  padding: 15px 30px;
+  background: linear-gradient(
+    135deg,
+    #0d6efd,
+    #4f8cff
+  );
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+  min-width: 200px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.company-item:hover {
+  transform: scale(1.05);
+}
+
+@keyframes companyScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================
+   REVIEW CARDS
+========================= */
+
+.review-card {
+  border: none;
+  border-radius: 18px;
+  transition: 0.3s;
+}
+
+.review-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px
+    rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   STATISTICS
+========================= */
+
+.stat-card {
+  border: none;
+  border-radius: 18px;
+  transition: 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px
+    rgba(0, 0, 0, 0.12);
+}
+.hero-section {
+  background: linear-gradient(
+    135deg,
+    #0d6efd,
+    #4f8cff
+  );
+  padding: 100px 0;
+  text-align: center;
+}
+
+.hero-section h1 {
+  color: #ffffff;
+  font-size: 3.5rem;
+  font-weight: 800;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+.hero-section p {
+  color: #f8f9fa;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 24px;
+  }
+
+  .company-item {
+    min-width: 150px;
+    padding: 12px 20px;
+  }
+}
