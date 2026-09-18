@@ -193,7 +193,7 @@ function Profile() {
             </p>
           </div>
           <button
-  className="btn btn-secondary mb-3"
+  className="btn btn-secondary mb-3 w-100 w-md-auto"
   onClick={() => navigate("/")}
 >
   ← Back To Home
@@ -708,11 +708,11 @@ function Profile() {
 
               <div className="mt-4">
                 <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => setIsEdit(true)}
+                    type="button"
+                    className="btn btn-primary w-100 w-md-auto"
+                    onClick={() => setIsEdit(true)}
                 >
-                  ✏️ Edit Profile
+                ✏️ Edit Profile
                 </button>
               </div>
             </>

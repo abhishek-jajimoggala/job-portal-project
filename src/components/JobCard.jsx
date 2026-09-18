@@ -1,25 +1,14 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 function JobCard({ job, saveJob }) {
-
-  const [showMore, setShowMore] = useState(false);
-
-  const description = job.description || "";
-
-  const shortDescription =
-    description.length > 120
-      ? description.substring(0, 120) + "..."
-      : description;
-
   return (
-    <div className="col-lg-4 col-md-6 mb-4">
+    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
       <div className="card job-card shadow border-0 h-100">
 
         <div className="card-body d-flex flex-column">
 
           {/* Header */}
-          <div className="d-flex justify-content-between align-items-start mb-2">
+          <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start mb-2 gap-2">
             <h4 className="fw-bold">
               {job.title}
             </h4>
@@ -75,7 +64,7 @@ function JobCard({ job, saveJob }) {
           </div>
 
           {/* Buttons */}
-          <div className="mt-auto d-flex gap-2">
+          <div className="mt-auto d-flex flex-column flex-sm-row gap-2">
 
             <Link
               to={`/job/${job.id}`}
@@ -85,7 +74,7 @@ function JobCard({ job, saveJob }) {
             </Link>
 
             <button
-              className="btn btn-outline-success"
+              className="btn btn-outline-success flex-grow-1"
               onClick={() => saveJob(job)}
             >
               Save

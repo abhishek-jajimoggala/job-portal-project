@@ -59,65 +59,44 @@ function Jobs() {
 };
 
   const filteredJobs = allJobs.filter((job) => {
-    const searchText = search.toLowerCase();
+  const searchText = search.toLowerCase();
 
-    const skillMatch = job.skills
-      ? Array.isArray(job.skills)
-        ? job.skills.some((skill) =>
-            skill.toLowerCase().includes(searchText)
-          )
-        : String(job.skills)
-            .toLowerCase()
-            .includes(searchText)
-      : false;
+  const jobLocation =
+    job.location?.toLowerCase() || "";
 
-    const keywordSkillMatch = job.skills
-      ? Array.isArray(job.skills)
-        ? job.skills.some((skill) =>
-            skill.toLowerCase().includes(keyword)
-          )
-        : String(job.skills)
-            .toLowerCase()
-            .includes(keyword)
-      : false;
+  const skillMatch = job.skills
+    ? (Array.isArray(job.skills)
+        ? job.skills
+        : String(job.skills).split(",")
+      ).some((skill) =>
+        skill.toLowerCase().includes(searchText)
+      )
+    : false;
 
-    return (
-      (!keyword ||
-        job.title?.toLowerCase().includes(keyword) ||
-        job.company?.toLowerCase().includes(keyword) ||
-        job.description
-          ?.toLowerCase()
-          .includes(keyword) ||
-        keywordSkillMatch) &&
-      (!city ||
-        job.location
-          ?.toLowerCase()
-          .includes(city)) &&
-      (search === "" ||
-        job.title
-          ?.toLowerCase()
-          .includes(searchText) ||
-        job.company
-          ?.toLowerCase()
-          .includes(searchText) ||
-        job.description
-          ?.toLowerCase()
-          .includes(searchText) ||
-        skillMatch) &&
-      (locationFilter === "" ||
-        job.location === locationFilter) &&
-      (typeFilter === "" ||
-        job.type === typeFilter)
-    );
-  });
+  return (
+    (search === "" ||
+      job.title?.toLowerCase().includes(searchText) ||
+      job.company?.toLowerCase().includes(searchText) ||
+      job.description?.toLowerCase().includes(searchText) ||
+      skillMatch) &&
+
+    (locationFilter === "" ||
+      jobLocation.includes(
+        locationFilter.toLowerCase()
+      )) &&
+
+    (typeFilter === "" ||
+      job.type === typeFilter)
+  );
+});
 
   return (
     <div className="container my-5">
       <div className="row">
 
         {/* Filters */}
-        <div className="col-lg-3 mb-4">
-          <div className="card shadow border-0 p-3 sticky-top">
+        <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-4">
+          <div className="card shadow border-0 p-3 jobs-filter">
 
             <h4 className="fw-bold mb-3">
               Filters
@@ -154,6 +133,9 @@ function Jobs() {
               </option>
               <option value="Chennai">
                 Chennai
+              </option>
+              <option value="Vijayawada">
+                Vijayawada
               </option>
               <option value="Remote">
                 Remote
@@ -196,7 +178,7 @@ function Jobs() {
         </div>
 
         {/* Job Listings */}
-        <div className="col-lg-9">
+        <div className="col-xl-9 col-lg-8 col-md-12 col-sm-12">
 
           <h2 className="fw-bold mb-2">
             Available Jobs ({filteredJobs.length})

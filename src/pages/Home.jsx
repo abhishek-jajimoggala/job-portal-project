@@ -143,7 +143,7 @@ function Home() {
 
         <div className="row g-4">
 
-          <div className="col-md-3">
+          <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
             <div className="card review-card shadow h-100 p-4">
               <h5>Rahul Kumar ⭐⭐⭐⭐⭐</h5>
               <p>Got placed in TCS within 15 days.</p>
@@ -178,7 +178,7 @@ function Home() {
       <div className="container py-5">
         <div className="row text-center g-4">
 
-          <div className="col-md-3">
+          <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
             <div className="card shadow p-4 stat-card">
               <h2 className="text-primary">10K+</h2>
               <h6>Active Jobs</h6>

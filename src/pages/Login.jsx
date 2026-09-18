@@ -19,16 +19,8 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (form.password.length < 6) {
-  alert("Password must be at least 6 characters");
-  return;
-}
-
     const users =
       JSON.parse(localStorage.getItem("users")) || [];
-
-    console.log("Users:", users);
-    console.log("Form:", form);
 
     const user = users.find(
       (u) =>
@@ -54,20 +46,21 @@ function Login() {
   };
 
   return (
-    <div className="container my-5">
-      <div className="row justify-content-center">
+    <div className="container-fluid">
+      <div
+        className="row justify-content-center align-items-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <div className="col-11 col-sm-10 col-md-8 col-lg-5 col-xl-4">
 
-        <div className="col-xl-4 col-lg-5 col-md-6 col-sm-10 col-12">
+          <div className="card shadow-lg border-0">
+            <div className="card-body p-4 p-md-5">
 
-          <div className="card shadow border-0">
-            <div className="card-body p-4">
-
-              <h2 className="text-center mb-4 text-primary">
+              <h2 className="text-center text-primary fw-bold mb-4">
                 Login
               </h2>
 
               <form onSubmit={handleSubmit}>
-
                 <div className="mb-3">
                   <label className="form-label">
                     Email
@@ -76,7 +69,7 @@ function Login() {
                   <input
                     type="email"
                     name="email"
-                    className="form-control"
+                    className="form-control form-control-lg"
                     placeholder="Enter Email"
                     value={form.email}
                     onChange={handleChange}
@@ -84,7 +77,7 @@ function Login() {
                   />
                 </div>
 
-                <div className="mb-3">
+                <div className="mb-4">
                   <label className="form-label">
                     Password
                   </label>
@@ -92,7 +85,7 @@ function Login() {
                   <input
                     type="password"
                     name="password"
-                    className="form-control"
+                    className="form-control form-control-lg"
                     placeholder="Enter Password"
                     value={form.password}
                     onChange={handleChange}
@@ -102,18 +95,17 @@ function Login() {
 
                 <button
                   type="submit"
-                  className="btn btn-primary w-100"
+                  className="btn btn-primary btn-lg w-100"
                 >
                   Login
                 </button>
-
               </form>
 
-              <p className="text-center mt-3">
+              <p className="text-center mt-4 mb-0">
                 Don't have an account?
                 <Link
                   to="/register"
-                  className="ms-1"
+                  className="ms-2 text-decoration-none fw-semibold"
                 >
                   Register
                 </Link>
@@ -123,7 +115,6 @@ function Login() {
           </div>
 
         </div>
-
       </div>
     </div>
   );

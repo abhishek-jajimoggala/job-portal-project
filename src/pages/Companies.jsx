@@ -1,96 +1,61 @@
 function Companies() {
   const companies = [
-    {
-      id: 1,
-      name: "TCS",
-      location: "Hyderabad",
-      openings: 120
-    },
-    {
-      id: 2,
-      name: "Infosys",
-      location: "Bangalore",
-      openings: 95
-    },
-    {
-      id: 3,
-      name: "Wipro",
-      location: "Chennai",
-      openings: 80
-    },
-    {
-      id: 4,
-      name: "Accenture",
-      location: "Pune",
-      openings: 140
-    },
-    {
-      id: 5,
-      name: "IBM",
-      location: "Mumbai",
-      openings: 65
-    },
-    {
-      id: 6,
-      name: "Capgemini",
-      location: "Hyderabad",
-      openings: 75
-    },
-    {
-      id: 7,
-      name: "Cognizant",
-      location: "Bangalore",
-      openings: 90
-    },
-    {
-      id: 8,
-      name: "Tech Mahindra",
-      location: "Noida",
-      openings: 55
-    }
+    { id: 1, name: "TCS", location: "Hyderabad", openings: 120 },
+    { id: 2, name: "Infosys", location: "Bangalore", openings: 95 },
+    { id: 3, name: "Wipro", location: "Chennai", openings: 80 },
+    { id: 4, name: "Accenture", location: "Pune", openings: 140 },
+    { id: 5, name: "IBM", location: "Mumbai", openings: 65 },
+    { id: 6, name: "Capgemini", location: "Hyderabad", openings: 75 },
+    { id: 7, name: "Cognizant", location: "Bangalore", openings: 90 },
+    { id: 8, name: "Tech Mahindra", location: "Noida", openings: 55 },
   ];
 
   return (
-    <div className="container my-5">
+    <div className="container py-5">
 
-      <h2 className="fw-bold mb-4">
-        Top Companies Hiring
-      </h2>
+      <div className="text-center mb-5">
+        <h2 className="fw-bold text-primary">
+          Top Companies Hiring
+        </h2>
 
-      <div className="row">
+        <p className="text-muted">
+          Explore opportunities from leading companies.
+        </p>
+      </div>
+
+      <div className="row g-4">
 
         {companies.map((company) => (
           <div
             key={company.id}
-            className="col-lg-3 col-md-4 col-sm-6 mb-4"
+            className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12"
           >
-            <div className="card shadow-sm border-0 h-100 text-center">
+            <div className="card company-card shadow border-0 h-100 text-center">
 
-              <div className="card-body">
+              <div className="card-body p-4">
 
                 <div
                   className="rounded-circle bg-primary text-white mx-auto mb-3 d-flex align-items-center justify-content-center"
                   style={{
-                    width: "80px",
-                    height: "80px",
-                    fontSize: "28px",
-                    fontWeight: "bold"
+                    width: "70px",
+                    height: "70px",
+                    fontSize: "24px",
+                    fontWeight: "bold",
                   }}
                 >
                   {company.name.charAt(0)}
                 </div>
 
-                <h5>{company.name}</h5>
+                <h5 className="fw-bold">
+                  {company.name}
+                </h5>
 
-                <p className="text-muted">
+                <p className="text-muted mb-2">
                   📍 {company.location}
                 </p>
 
-                <p>
-                  <strong>
-                    {company.openings}
-                  </strong>{" "}
-                  Open Positions
+                <p className="mb-3">
+                  <strong>{company.openings}</strong> Open Positions
                 </p>
 
                 <button className="btn btn-primary w-100">

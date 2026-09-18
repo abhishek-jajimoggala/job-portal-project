@@ -86,113 +86,113 @@ if (form.password !== form.confirmPassword) {
   };
 
   return (
-    <div className="container my-5">
-      <div className="row justify-content-center">
+  <div className="container py-5">
+    <div className="row justify-content-center">
 
-        <div className="col-lg-5 col-md-7">
+      <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
 
-          <div className="card shadow-lg border-0">
-            <div className="card-body p-5">
+        <div className="card shadow-lg border-0">
+          <div className="card-body p-4 p-md-5">
 
-              <h2 className="text-center fw-bold mb-4">
-                Create Account
-              </h2>
+            <h2 className="text-center fw-bold mb-4">
+              Create Account
+            </h2>
 
-              <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
 
-                <div className="mb-3">
-                  <label className="form-label">
-                    Full Name
-                  </label>
+              <div className="mb-3">
+                <label className="form-label">
+                  Full Name
+                </label>
 
-                  <input
-                    type="text"
-                    name="name"
-                    className="form-control"
-                    placeholder="Enter Full Name"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+                <input
+                  type="text"
+                  name="name"
+                  className="form-control"
+                  placeholder="Enter Full Name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-                <div className="mb-3">
-                  <label className="form-label">
-                    Email Address
-                  </label>
+              <div className="mb-3">
+                <label className="form-label">
+                  Email Address
+                </label>
 
-                  <input
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    placeholder="Enter Email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  placeholder="Enter Email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-                <div className="mb-3">
-                  <label className="form-label">
-                    Password
-                  </label>
+              <div className="mb-3">
+                <label className="form-label">
+                  Password
+                </label>
 
-                  <input
-                        type="password"
-                        name="password"
-                        className="form-control"
-                        placeholder="Enter Password"
-                        value={form.password}
-                        onChange={handleChange}
-                        minLength={6}
-                        required
-                      />
-                </div>
+                <input
+                  type="password"
+                  name="password"
+                  className="form-control"
+                  placeholder="Enter Password"
+                  value={form.password}
+                  onChange={handleChange}
+                  minLength={6}
+                  required
+                />
+              </div>
 
-                <div className="mb-4">
-                  <label className="form-label">
-                    Confirm Password
-                  </label>
+              <div className="mb-4">
+                <label className="form-label">
+                  Confirm Password
+                </label>
 
-                  <input
-                      type="password"
-                      name="confirmPassword"
-                      className="form-control"
-                      placeholder="Confirm Password"
-                      value={form.confirmPassword}
-                      onChange={handleChange}
-                      minLength={6}
-                      required
-                    />
-                </div>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  className="form-control"
+                  placeholder="Confirm Password"
+                  value={form.confirmPassword}
+                  onChange={handleChange}
+                  minLength={6}
+                  required
+                />
+              </div>
 
-                <button
-                  type="submit"
-                  className="btn btn-primary w-100"
-                >
-                  Register
-                </button>
+              <button
+                type="submit"
+                className="btn btn-primary w-100"
+              >
+                Register
+              </button>
 
-              </form>
+            </form>
 
-              <p className="text-center mt-4 mb-0">
-                Already have an account?
-                <Link
-                  to="/login"
-                  className="ms-2"
-                >
-                  Login
-                </Link>
-              </p>
+            <p className="text-center mt-4 mb-0">
+              Already have an account?
+              <Link
+                to="/login"
+                className="ms-2"
+              >
+                Login
+              </Link>
+            </p>
 
-            </div>
           </div>
-
         </div>
 
       </div>
+
     </div>
-  );
+  </div>
+);
 }
 
 export default Register;

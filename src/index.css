@@ -376,3 +376,272 @@ body{
     border-radius: 12px;
   }
 }
+/* Mobile Responsive */
+
+@media (max-width: 768px) {
+
+  .card-body {
+    padding: 20px !important;
+  }
+
+  h1 {
+    font-size: 28px !important;
+  }
+
+  h2 {
+    font-size: 24px !important;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .navbar-brand {
+    font-size: 22px !important;
+  }
+
+}
+
+@media (max-width: 576px) {
+
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .card {
+    border-radius: 12px;
+  }
+
+  .form-control {
+    font-size: 14px;
+  }
+
+}
+/* My Applications Mobile */
+
+@media (max-width: 768px) {
+
+  .card-body h5 {
+    font-size: 18px;
+  }
+
+  .card-body h6 {
+    font-size: 15px;
+  }
+
+  .card-body p {
+    font-size: 14px;
+  }
+
+  .badge {
+    font-size: 12px !important;
+  }
+
+}
+
+@media (max-width: 576px) {
+
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .card {
+    border-radius: 12px;
+  }
+
+}
+/* Jobs Page Responsive */
+
+.jobs-filter{
+  top: 80px;
+}
+
+@media (max-width: 991px){
+
+  .jobs-filter{
+    position: static !important;
+  }
+
+}
+
+@media (max-width: 768px){
+
+  .jobs-filter{
+    margin-bottom: 20px;
+  }
+
+  .jobs-filter h4{
+    font-size: 20px;
+  }
+
+  .jobs-filter input,
+  .jobs-filter select{
+    font-size: 14px;
+  }
+
+}
+
+@media (max-width: 576px){
+
+  .container{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  h2{
+    font-size: 22px;
+  }
+
+}
+/* Job Card Responsive */
+
+.job-card{
+  transition: 0.3s;
+}
+
+.job-card:hover{
+  transform: translateY(-5px);
+}
+
+.job-description{
+  min-height: 80px;
+}
+
+.skills-container{
+  min-height: 70px;
+}
+
+@media (max-width:768px){
+
+  .job-card h4{
+    font-size: 18px;
+  }
+
+  .job-card h5{
+    font-size: 16px;
+  }
+
+  .job-card p{
+    font-size: 14px;
+  }
+
+  .job-card .badge{
+    font-size: 11px;
+  }
+
+  .job-description{
+    min-height: auto;
+  }
+
+  .skills-container{
+    min-height: auto;
+  }
+
+}
+
+@media (max-width:576px){
+
+  .job-card .btn{
+    width: 100%;
+  }
+
+}
+/* Saved Jobs Responsive */
+
+@media (max-width:768px){
+
+  .saved-job-card h5{
+    font-size:18px;
+  }
+
+  .saved-job-card h6{
+    font-size:16px;
+  }
+
+  .saved-job-card p{
+    font-size:14px;
+  }
+
+}
+
+@media (max-width:576px){
+
+  .saved-job-card .btn{
+    width:100%;
+  }
+
+}
+/* Profile Responsive */
+
+@media (max-width:768px){
+
+  .card-body{
+    padding:20px !important;
+  }
+
+  h2{
+    font-size:24px;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+}
+
+@media (max-width:576px){
+
+  .form-control,
+  .form-select{
+    font-size:14px;
+  }
+
+  .badge{
+    font-size:12px;
+  }
+
+}
+.company-card{
+  transition:0.3s;
+  border-radius:18px;
+}
+
+.company-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+@media(max-width:768px){
+
+.company-card{
+  text-align:center;
+}
+
+.company-card .btn{
+  width:100%;
+}
+
+}
+.company-card{
+  transition:0.3s;
+  border-radius:18px;
+}
+
+.company-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+@media(max-width:768px){
+
+.company-card{
+  text-align:center;
+}
+
+.company-card .btn{
+  width:100%;
+}
+
+}

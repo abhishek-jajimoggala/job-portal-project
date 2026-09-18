@@ -1,5 +1,3 @@
-import React from "react";
-
 function MyApplications() {
   const loggedUser =
     JSON.parse(localStorage.getItem("loggedUser"));
@@ -18,12 +16,12 @@ function MyApplications() {
   return (
     <div className="container my-5">
 
-      <div className="d-flex justify-content-between align-items-center mb-4">
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-2">
         <h2 className="fw-bold">
           📄 My Applications
         </h2>
 
-        <span className="badge bg-primary fs-6">
+        <span className="badge bg-primary fs-6 px-3 py-2">
           Total: {myApplications.length}
         </span>
       </div>
@@ -47,9 +45,8 @@ function MyApplications() {
 
           {myApplications.map((app, index) => (
             <div
-              key={app.id || index}
-              className="col-lg-4 col-md-6 mb-4"
-            >
+                key={app.id || index}
+                className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
               <div className="card shadow-lg border-0 h-100">
 
                 <div className="card-body">
@@ -104,7 +101,7 @@ function MyApplications() {
                       href={app.resume}
                       target="_blank"
                       rel="noreferrer"
-                      className="btn btn-success btn-sm me-2"
+                      className="btn btn-success btn-sm w-100"
                     >
                       📄 View Resume
                     </a>

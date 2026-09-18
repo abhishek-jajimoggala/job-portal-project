@@ -45,10 +45,10 @@ function SavedJobs() {
         ) : (
           savedJobs.map((job) => (
             <div
-              className="col-lg-4 col-md-6 mb-4"
+              className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-4"
               key={job.id}
             >
-              <div className="card shadow h-100 border-0">
+              <div className="card shadow h-100 border-0 saved-job-card">
                 <div className="card-body">
                   <h5 className="fw-bold">
                     {job.title}
@@ -62,7 +62,7 @@ function SavedJobs() {
                   <p>💰 {job.salary}</p>
                   <p>💼 {job.type}</p>
 
-                  <div className="d-flex gap-2">
+                  <div className="d-flex flex-column flex-sm-row gap-2">
                     <Link
                       to={`/job/${job.id}`}
                       className="btn btn-primary btn-sm"

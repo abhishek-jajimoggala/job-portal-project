@@ -33,7 +33,27 @@ const jobs = [
     ],
     description:
       "Python developer with Flask and MySQL experience."
+  },
+
+   {
+    id: 3,
+    title: "Python Full Stack",
+    company: "Vision Computers",
+    location: "Vijayawada",
+    salary: "2 - 5 LPA",
+    experience: "2 - 4 Years",
+    type: "Full Time",
+    skills: [
+      "Python",
+      "Flask",
+      "AI/ML",
+      "Deep Learning"
+    ],
+    description:
+      "Python developer with Flask and MySQL experience."
   }
 ];
+
+
 
 export default jobs;
