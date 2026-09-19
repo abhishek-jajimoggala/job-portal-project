@@ -58,7 +58,7 @@ function Footer() {
 
               <li>
                 <Link
-                  to="/applications"
+                  to="/my-applications"
                   className="text-white text-decoration-none"
                 >
                   Applications

@@ -5,159 +5,231 @@ function Navbar() {
     localStorage.getItem("loggedUser")
   );
 
+  const isAdmin =
+    localStorage.getItem("admin") === "true";
+
   const logout = () => {
-    localStorage.removeItem("loggedUser");
-    window.location.href = "/";
-  };
+  localStorage.removeItem("loggedUser");
+  localStorage.removeItem("admin");
+  window.location.href = "/";
+};
 
   return (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow sticky-top">
-    <div className="container-fluid px-3">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow sticky-top">
+      <div className="container-fluid px-3">
 
-      <Link
-        className="navbar-brand fw-bold fs-4"
-        to="/"
-      >
-        JobPortal
-      </Link>
+        <Link
+          className="navbar-brand fw-bold fs-4"
+          to="/"
+        >
+          JobPortal
+        </Link>
 
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-      <div
-        className="collapse navbar-collapse"
-        id="navbarNav"
-      >
-        <ul className="navbar-nav mx-auto text-center">
+        <div
+          className="collapse navbar-collapse"
+          id="navbarNav"
+        >
 
-          <li className="nav-item">
-            <Link className="nav-link" to="/">
-              Home
-            </Link>
-          </li>
+          <ul className="navbar-nav mx-auto text-center">
 
-          <li className="nav-item">
-            <Link className="nav-link" to="/jobs">
-              Jobs
-            </Link>
-          </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/">
+                Home
+              </Link>
+            </li>
 
-          <li className="nav-item">
-            <Link className="nav-link" to="/companies">
-              Companies
-            </Link>
-          </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/jobs">
+                Jobs
+              </Link>
+            </li>
 
-          <li className="nav-item">
-            <Link className="nav-link" to="/saved-jobs">
-              Saved Jobs
-            </Link>
-          </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/companies">
+                Companies
+              </Link>
+            </li>
 
-          {loggedUser && (
-            <>
-              <li className="nav-item">
-                <Link className="nav-link" to="/categories">
-                  Categories
-                </Link>
-              </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/saved-jobs">
+                Saved Jobs
+              </Link>
+            </li>
 
-              <li className="nav-item">
-                <Link className="nav-link" to="/my-applications">
-                  Applications
-                </Link>
-              </li>
-            </>
-          )}
-        </ul>
+            {loggedUser && (
+              <>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link"
+                    to="/categories"
+                  >
+                    Categories
+                  </Link>
+                </li>
 
-        {!loggedUser ? (
-          <div className="d-flex flex-column flex-lg-row gap-2 mt-3 mt-lg-0">
+                <li className="nav-item">
+                  <Link
+                    className="nav-link"
+                    to="/my-applications"
+                  >
+                    Applications
+                  </Link>
+                </li>
+              </>
+            )}
 
-            <Link
-              to="/login"
-              className="btn btn-light"
-            >
-              Login
-            </Link>
+          </ul>
 
-            <Link
-              to="/register"
-              className="btn btn-warning"
-            >
-              Register
-            </Link>
+          {!loggedUser ? (
 
-          </div>
-        ) : (
-          <div className="dropdown text-center mt-3 mt-lg-0">
+            <div className="dropdown">
 
-            <button
-              className="btn btn-light dropdown-toggle"
-              data-bs-toggle="dropdown"
-            >
-              👤 {loggedUser.name}
-            </button>
+              <button
+                className="btn btn-light dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                Login
+              </button>
 
-            <ul className="dropdown-menu dropdown-menu-end">
+              <ul className="dropdown-menu dropdown-menu-end">
 
-              <li>
+                <li>
+                  <Link
+                    className="dropdown-item"
+                    to="/login"
+                  >
+                    👤 User Login
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    className="dropdown-item"
+                    to="/admin-login"
+                  >
+                    🛠 Admin Login
+                  </Link>
+                </li>
+
+                <li>
+                  <hr className="dropdown-divider" />
+                </li>
+
+                <li>
+                  <Link
+                    className="dropdown-item"
+                    to="/register"
+                  >
+                    📝 Register
+                  </Link>
+                </li>
+
+              </ul>
+
+            </div>
+
+          ) : (
+
+            <div className="d-flex align-items-center gap-2">
+
+              {isAdmin && (
                 <Link
-                  className="dropdown-item"
-                  to="/profile"
+                  to="/admin"
+                  className="btn btn-warning"
                 >
-                  My Profile
+                  Admin Dashboard
                 </Link>
-              </li>
+              )}
 
-              <li>
-                <Link
-                  className="dropdown-item"
-                  to="/saved-jobs"
-                >
-                  Saved Jobs
-                </Link>
-              </li>
+              <div className="dropdown">
 
-              <li>
-                <Link
-                  className="dropdown-item"
-                  to="/my-applications"
-                >
-                  My Applications
-                </Link>
-              </li>
-
-              <li>
-                <hr className="dropdown-divider" />
-              </li>
-
-              <li>
                 <button
-                  className="dropdown-item text-danger"
-                  onClick={logout}
+                  className="btn btn-light dropdown-toggle"
+                  data-bs-toggle="dropdown"
                 >
-                  Logout
+                  👤 {loggedUser.name}
                 </button>
-              </li>
 
-            </ul>
+                <ul className="dropdown-menu dropdown-menu-end">
 
-          </div>
-        )}
+                  <li>
+                    <Link
+                      className="dropdown-item"
+                      to="/profile"
+                    >
+                      My Profile
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      className="dropdown-item"
+                      to="/saved-jobs"
+                    >
+                      Saved Jobs
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      className="dropdown-item"
+                      to="/my-applications"
+                    >
+                      My Applications
+                    </Link>
+                  </li>
+
+                  {isAdmin && (
+                    <>
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
+
+                      <li>
+                        <Link
+                          className="dropdown-item text-primary"
+                          to="/admin"
+                        >
+                          🛠 Admin Dashboard
+                        </Link>
+                      </li>
+                    </>
+                  )}
+
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+
+                  <li>
+                    <button
+                      className="dropdown-item text-danger"
+                      onClick={logout}
+                    >
+                      Logout
+                    </button>
+                  </li>
+
+                </ul>
+
+              </div>
+
+            </div>
+
+          )}
+
+        </div>
 
       </div>
-
-    </div>
-  </nav>
+    </nav>
   );
 }
 
