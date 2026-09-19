@@ -2,18 +2,24 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Categories from "./pages/Categories";
+
 import Home from "./pages/Home";
 import Jobs from "./pages/Jobs";
-import SavedJobs from "./pages/SavedJobs";
 import Companies from "./pages/Companies";
+import SavedJobs from "./pages/SavedJobs";
+import Categories from "./pages/Categories";
 import MyApplications from "./pages/MyApplications";
+import Profile from "./pages/Profile";
+
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Profile from "./pages/Profile";
+
+import JobDetails from "./pages/JobDetails";
+import ApplyJob from "./pages/ApplyJob";
 
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminProfile from "./pages/AdminProfile";
 import ManageJobs from "./pages/ManageJobs";
 import AdminApplications from "./pages/AdminApplications";
 import UserProfiles from "./pages/UserProfiles";
@@ -22,14 +28,9 @@ import PostedJobs from "./pages/PostedJobs";
 import ShortlistedCandidates from "./pages/ShortlistedCandidates";
 import RejectedCandidates from "./pages/RejectedCandidates";
 
-import JobDetails from "./pages/JobDetails";
-import ApplyJob from "./pages/ApplyJob";
-
-
 function App() {
   const location = useLocation();
 
-  // Hide User Navbar & Footer on Admin Pages
   const hideUserLayout =
     location.pathname.startsWith("/admin");
 
@@ -38,29 +39,60 @@ function App() {
       {!hideUserLayout && <Navbar />}
 
       <Routes>
+
         {/* User Pages */}
-        <Route path="/" element={<Home />} />
-        <Route path="/jobs" element={<Jobs />} />
-        <Route path="/companies" element={<Companies />} />
-        <Route path="/saved-jobs" element={<SavedJobs />} />
+        <Route
+          path="/"
+          element={<Home />}
+        />
+
+        <Route
+          path="/jobs"
+          element={<Jobs />}
+        />
+
+        <Route
+          path="/companies"
+          element={<Companies />}
+        />
+
+        <Route
+          path="/saved-jobs"
+          element={<SavedJobs />}
+        />
+
+        <Route
+          path="/categories"
+          element={<Categories />}
+        />
+
         <Route
           path="/my-applications"
           element={<MyApplications />}
         />
-        <Route path="/profile" element={<Profile />} />
-        <Route
-  path="/categories"
-  element={<Categories />}
-/>
-        {/* User Authentication */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
 
-        {/* Job Pages */}
+        <Route
+          path="/profile"
+          element={<Profile />}
+        />
+
+        {/* Authentication */}
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        <Route
+          path="/register"
+          element={<Register />}
+        />
+
+        {/* Job Details */}
         <Route
           path="/job/:id"
           element={<JobDetails />}
         />
+
         <Route
           path="/apply/:id"
           element={<ApplyJob />}
@@ -72,12 +104,19 @@ function App() {
           element={<AdminLogin />}
         />
 
-        {/* Admin Pages */}
+        {/* Admin Dashboard */}
         <Route
           path="/admin"
           element={<AdminDashboard />}
         />
 
+        {/* Admin Profile */}
+        <Route
+          path="/admin/profile"
+          element={<AdminProfile />}
+        />
+
+        {/* Admin Management */}
         <Route
           path="/admin/jobs"
           element={<ManageJobs />}
@@ -112,6 +151,7 @@ function App() {
           path="/admin/rejected"
           element={<RejectedCandidates />}
         />
+
       </Routes>
 
       {!hideUserLayout && <Footer />}

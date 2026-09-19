@@ -6,13 +6,14 @@ function Navbar() {
   );
 
   const isAdmin =
-    localStorage.getItem("admin") === "true";
+    loggedUser?.role === "admin";
 
   const logout = () => {
-  localStorage.removeItem("loggedUser");
-  localStorage.removeItem("admin");
-  window.location.href = "/";
-};
+    localStorage.removeItem("loggedUser");
+    localStorage.removeItem("admin");
+
+    window.location.href = "/";
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow sticky-top">
@@ -39,34 +40,46 @@ function Navbar() {
           id="navbarNav"
         >
 
-          <ul className="navbar-nav mx-auto text-center">
+          <ul className="navbar-nav mx-auto">
 
             <li className="nav-item">
-              <Link className="nav-link" to="/">
+              <Link
+                className="nav-link"
+                to="/"
+              >
                 Home
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/jobs">
+              <Link
+                className="nav-link"
+                to="/jobs"
+              >
                 Jobs
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/companies">
+              <Link
+                className="nav-link"
+                to="/companies"
+              >
                 Companies
               </Link>
             </li>
 
-            <li className="nav-item">
-              <Link className="nav-link" to="/saved-jobs">
-                Saved Jobs
-              </Link>
-            </li>
-
-            {loggedUser && (
+            {!isAdmin && loggedUser && (
               <>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link"
+                    to="/saved-jobs"
+                  >
+                    Saved Jobs
+                  </Link>
+                </li>
+
                 <li className="nav-item">
                   <Link
                     className="nav-link"
@@ -91,136 +104,129 @@ function Navbar() {
 
           {!loggedUser ? (
 
+            <div className="d-flex gap-2">
+
+              <Link
+                to="/login"
+                className="btn btn-light"
+              >
+                User Login
+              </Link>
+
+              <Link
+                to="/admin-login"
+                className="btn btn-warning"
+              >
+                Admin Login
+              </Link>
+
+              <Link
+                to="/register"
+                className="btn btn-success"
+              >
+                Register
+              </Link>
+
+            </div>
+
+          ) : (
+
             <div className="dropdown">
 
               <button
                 className="btn btn-light dropdown-toggle"
                 data-bs-toggle="dropdown"
               >
-                Login
+                👤 {loggedUser.name}
               </button>
 
               <ul className="dropdown-menu dropdown-menu-end">
 
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/login"
-                  >
-                    👤 User Login
-                  </Link>
-                </li>
+                {!isAdmin && (
+                  <>
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to="/profile"
+                      >
+                        My Profile
+                      </Link>
+                    </li>
 
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/admin-login"
-                  >
-                    🛠 Admin Login
-                  </Link>
-                </li>
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to="/saved-jobs"
+                      >
+                        Saved Jobs
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to="/my-applications"
+                      >
+                        My Applications
+                      </Link>
+                    </li>
+                  </>
+                )}
+
+                {isAdmin && (
+                  <>
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to="/admin/profile"
+                      >
+                        Profile
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to="/admin/jobs"
+                      >
+                        Manage Jobs
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to="/admin/applications"
+                      >
+                        Applications
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to="/admin/users"
+                      >
+                        Users
+                      </Link>
+                    </li>
+                  </>
+                )}
 
                 <li>
                   <hr className="dropdown-divider" />
                 </li>
 
                 <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/register"
+                  <button
+                    className="dropdown-item text-danger"
+                    onClick={logout}
                   >
-                    📝 Register
-                  </Link>
+                    Logout
+                  </button>
                 </li>
 
               </ul>
-
-            </div>
-
-          ) : (
-
-            <div className="d-flex align-items-center gap-2">
-
-              {isAdmin && (
-                <Link
-                  to="/admin"
-                  className="btn btn-warning"
-                >
-                  Admin Dashboard
-                </Link>
-              )}
-
-              <div className="dropdown">
-
-                <button
-                  className="btn btn-light dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                >
-                  👤 {loggedUser.name}
-                </button>
-
-                <ul className="dropdown-menu dropdown-menu-end">
-
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      to="/profile"
-                    >
-                      My Profile
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      to="/saved-jobs"
-                    >
-                      Saved Jobs
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      to="/my-applications"
-                    >
-                      My Applications
-                    </Link>
-                  </li>
-
-                  {isAdmin && (
-                    <>
-                      <li>
-                        <hr className="dropdown-divider" />
-                      </li>
-
-                      <li>
-                        <Link
-                          className="dropdown-item text-primary"
-                          to="/admin"
-                        >
-                          🛠 Admin Dashboard
-                        </Link>
-                      </li>
-                    </>
-                  )}
-
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-
-                  <li>
-                    <button
-                      className="dropdown-item text-danger"
-                      onClick={logout}
-                    >
-                      Logout
-                    </button>
-                  </li>
-
-                </ul>
-
-              </div>
 
             </div>
 

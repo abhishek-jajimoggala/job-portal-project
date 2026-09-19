@@ -26,13 +26,13 @@ function AdminLogin() {
   localStorage.setItem("admin", "true");
 
   localStorage.setItem(
-    "loggedUser",
-    JSON.stringify({
-      name: "Admin",
-      email: "admin@jobportal.com",
-      role: "admin",
-    })
-  );
+  "loggedUser",
+  JSON.stringify({
+    name: "Admin",
+    email: "admin@jobportal.com",
+    role: "admin",
+  })
+);
 
   alert("Admin Login Successful");
 

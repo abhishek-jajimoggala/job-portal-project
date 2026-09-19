@@ -3,41 +3,43 @@ import { Link, useNavigate } from "react-router-dom";
 function AdminNavbar() {
   const navigate = useNavigate();
 
+  const admin = JSON.parse(
+    localStorage.getItem("loggedUser")
+  );
+
   const handleLogout = () => {
     localStorage.removeItem("admin");
-    navigate("/admin-login");
+    localStorage.removeItem("loggedUser");
+
+    navigate("/");
+    window.location.reload();
   };
 
   return (
-    <nav className="navbar navbar-expand-lg admin-navbar sticky-top">
+    <nav className="navbar navbar-expand-lg navbar-dark sticky-top shadow admin-navbar">
       <div className="container-fluid">
 
-        {/* Logo */}
         <Link
           to="/admin"
           className="navbar-brand fw-bold"
         >
-          🚀 JobPortal Admin
+          🚀 JobPortal Carrer
         </Link>
 
-        {/* Mobile Toggle */}
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#adminNavbar"
-          aria-controls="adminNavbar"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Menu */}
         <div
           className="collapse navbar-collapse"
           id="adminNavbar"
         >
+
           <div className="navbar-nav me-auto">
 
             <Link
@@ -62,13 +64,6 @@ function AdminNavbar() {
             </Link>
 
             <Link
-              to="/admin/applications"
-              className="nav-link"
-            >
-              Applications
-            </Link>
-
-            <Link
               to="/admin/users"
               className="nav-link"
             >
@@ -76,35 +71,78 @@ function AdminNavbar() {
             </Link>
 
             <Link
-              to="/admin/resumes"
+              to="/admin/applications"
               className="nav-link"
             >
-              Resumes
-            </Link>
-
-            <Link
-              to="/admin/shortlisted"
-              className="nav-link"
-            >
-              Shortlisted
-            </Link>
-
-            <Link
-              to="/admin/rejected"
-              className="nav-link"
-            >
-              Rejected
+              Applications
             </Link>
 
           </div>
 
-          {/* Logout */}
-          <button
-            className="btn btn-danger admin-logout-btn"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
+          {/* Admin Profile Dropdown */}
+          <div className="dropdown">
+
+            <button
+              className="btn btn-light dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >
+              👤 {admin?.name || "Admin"}
+            </button>
+
+            <ul className="dropdown-menu dropdown-menu-end">
+
+              <li>
+                <Link
+                  className="dropdown-item"
+                  to="/admin/profile"
+                >
+                  Profile
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  className="dropdown-item"
+                  to="/admin/jobs"
+                >
+                  Manage Jobs
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  className="dropdown-item"
+                  to="/admin/users"
+                >
+                  Users
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  className="dropdown-item"
+                  to="/admin/applications"
+                >
+                  Applications
+                </Link>
+              </li>
+
+              <li>
+                <hr className="dropdown-divider" />
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item text-danger"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </li>
+
+            </ul>
+
+          </div>
 
         </div>
       </div>
