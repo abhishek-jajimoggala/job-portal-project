@@ -38,7 +38,7 @@ function AdminLogin() {
 
   navigate("/admin");
 
-  window.location.reload();
+  // window.location.reload();
 } else {
   alert("Invalid Admin Credentials");
 }
