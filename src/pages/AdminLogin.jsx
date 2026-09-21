@@ -88,13 +88,13 @@ function AdminLogin() {
                   />
                 </div>
 
-                <div className="alert alert-info mt-3">
+                {/* <div className="alert alert-info mt-3">
                 <strong>Demo Admin Credentials</strong>
                   <br />
                 Email: <b>admin@jobportal.com</b>
                   <br />
                 Password: <b>admin123</b>
-                </div>
+                </div> */}
 
 
                 <button
