@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import jobs from "../data/jobs";
+import { toast } from "react-toastify";
 
 function JobDetails() {
   const { id } = useParams();
@@ -27,7 +28,7 @@ function JobDetails() {
 
   const saveJob = () => {
   if (!loggedUser) {
-    alert("Please Login First");
+    toast.warning("Please Login First");
     return;
   }
 
@@ -41,7 +42,7 @@ function JobDetails() {
   );
 
   if (alreadySaved) {
-    alert("Job Already Saved");
+    toast.info("Job Already Saved");
     return;
   }
 
@@ -52,7 +53,7 @@ function JobDetails() {
     JSON.stringify(savedJobs)
   );
 
-  alert("Job Saved Successfully");
+  toast.success("Job Saved Successfully");
 };
 
   if (!job) {
