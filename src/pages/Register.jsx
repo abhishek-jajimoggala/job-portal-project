@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Register() {
   const navigate = useNavigate();
@@ -27,17 +28,17 @@ function Register() {
   !form.password ||
   !form.confirmPassword
 ) {
-  alert("Please fill all fields");
+  toast.warning("Please fill all fields");
   return;
 }
 
 if (form.password.length < 6) {
-  alert("Password must be at least 6 characters");
+  toast.warning("Password must be at least 6 characters");
   return;
 }
 
 if (form.password !== form.confirmPassword) {
-  alert("Passwords do not match");
+  toast.warning("Passwords do not match");
   return;
 }
 
@@ -51,7 +52,7 @@ if (form.password !== form.confirmPassword) {
     );
 
     if (existingUser) {
-      alert("User already exists");
+      toast.warning("User already exists");
       return;
     }
 
@@ -80,7 +81,7 @@ if (form.password !== form.confirmPassword) {
       JSON.stringify(users)
     );
 
-    alert("Registration Successful");
+    toast.success("Registration Successful");
 
     navigate("/login");
   };

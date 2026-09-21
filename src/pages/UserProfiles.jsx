@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
+import { toast } from "react-toastify";
 
 function UserProfiles() {
   const [selectedUser, setSelectedUser] = useState(null);
@@ -9,19 +10,31 @@ function UserProfiles() {
     JSON.parse(localStorage.getItem("users")) || [];
 
   const deleteUser = (email) => {
-    if (!window.confirm("Delete this user?")) return;
+  if (!window.confirm("Delete this user?")) return;
 
-    const updatedUsers = users.filter(
-      (user) => user.email !== email
-    );
+  const updatedUsers = users.filter(
+    (user) => user.email !== email
+  );
 
-    localStorage.setItem(
-      "users",
-      JSON.stringify(updatedUsers)
-    );
+  localStorage.setItem(
+    "users",
+    JSON.stringify(updatedUsers)
+  );
 
+  const loggedUser = JSON.parse(
+    localStorage.getItem("loggedUser")
+  );
+
+  if (loggedUser?.email === email) {
+    localStorage.removeItem("loggedUser");
+  }
+
+  toast.success("User deleted successfully");
+
+  setTimeout(() => {
     window.location.reload();
-  };
+  }, 1000);
+};
 
   return (
     <>
@@ -102,6 +115,8 @@ function UserProfiles() {
                     >
                       View Profile
                     </button>
+
+                    
 
                     <button
                       className="btn btn-danger"

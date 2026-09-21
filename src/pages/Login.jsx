@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -30,7 +31,7 @@ function Login() {
     );
 
     if (!user) {
-      alert("Invalid Email or Password");
+      toast.error("Invalid Email or Password");
       return;
     }
 
@@ -39,10 +40,10 @@ function Login() {
       JSON.stringify(user)
     );
 
-    alert(`Welcome ${user.name}`);
+    toast.success(`Welcome ${user.name}`);
 
     navigate("/");
-    window.location.reload();
+    
   };
 
   return (

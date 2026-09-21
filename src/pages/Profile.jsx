@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Profile() {
   const [isEdit, setIsEdit] = useState(false);
@@ -92,7 +93,7 @@ function Profile() {
     ];
 
     if (!allowedTypes.includes(file.type)) {
-      alert("Please upload only PDF, DOC, or DOCX files.");
+      toast.warning("Please upload only PDF, DOC, or DOCX files.");
       e.target.value = "";
       return;
     }
@@ -101,7 +102,7 @@ function Profile() {
     const maxSize = 2 * 1024 * 1024;
 
     if (file.size > maxSize) {
-      alert("Resume size should be less than 2 MB.");
+      toast.warning("Resume size should be less than 2 MB.");
       e.target.value = "";
       return;
     }
@@ -125,12 +126,12 @@ function Profile() {
 
   const saveProfile = () => {
     if (!user.name.trim()) {
-      alert("Please enter your name.");
+      toast.warning("Please enter your name.");
       return;
     }
 
     if (!user.email.trim()) {
-      alert("Please enter your email.");
+      toast.warning("Please enter your email.");
       return;
     }
 
@@ -156,7 +157,7 @@ function Profile() {
 
     localStorage.setItem("users", JSON.stringify(users));
 
-    alert("Profile Updated Successfully");
+    toast.success("Profile Updated Successfully");
     setIsEdit(false);
   };
 

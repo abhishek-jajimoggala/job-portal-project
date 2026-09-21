@@ -1,58 +1,79 @@
+import { Link } from "react-router-dom";
+import jobsData from "../data/jobs";
+
 function Categories() {
+  const adminJobs =
+    JSON.parse(localStorage.getItem("adminJobs")) || [];
+
+  const allJobs = [...jobsData, ...adminJobs];
+
+  const getCount = (keywords) => {
+    const keywordArray = Array.isArray(keywords)
+      ? keywords
+      : [keywords];
+
+    return allJobs.filter((job) => {
+      const title = job.title?.toLowerCase() || "";
+
+      return keywordArray.some((keyword) =>
+        title.includes(keyword.toLowerCase())
+      );
+    }).length;
+  };
+
   const categories = [
     {
       id: 1,
       name: "Software Developer",
-      jobs: "2500+ Jobs",
-      icon: "💻"
+      jobs: getCount("software"),
+      icon: "💻",
     },
     {
       id: 2,
       name: "Python Developer",
-      jobs: "1800+ Jobs",
-      icon: "🐍"
+      jobs: getCount("python"),
+      icon: "🐍",
     },
     {
       id: 3,
       name: "React Developer",
-      jobs: "1500+ Jobs",
-      icon: "⚛️"
+      jobs: getCount("react"),
+      icon: "⚛️",
     },
     {
       id: 4,
       name: "Java Developer",
-      jobs: "2200+ Jobs",
-      icon: "☕"
+      jobs: getCount("java"),
+      icon: "☕",
     },
     {
       id: 5,
       name: "Data Analyst",
-      jobs: "1200+ Jobs",
-      icon: "📊"
+      jobs: getCount("data"),
+      icon: "📊",
     },
     {
       id: 6,
-      name: "Full Stack Developer",
-      jobs: "1700+ Jobs",
-      icon: "🚀"
+      name: "Python Full Stack",
+      jobs: getCount("full stack"),
+      icon: "🚀",
     },
     {
       id: 7,
-      name: "UI/UX Designer",
-      jobs: "900+ Jobs",
-      icon: "🎨"
+      name: "Backend Engineer",
+      jobs: getCount("backend"),
+      icon: "⚙️",
     },
     {
       id: 8,
-      name: "DevOps Engineer",
-      jobs: "1100+ Jobs",
-      icon: "⚙️"
-    }
+      name: "Internships",
+      jobs: getCount("intern"),
+      icon: "🤖",
+    },
   ];
 
   return (
     <div className="container my-5">
-
       <div className="text-center mb-5">
         <h1 className="fw-bold">
           Browse Job Categories
@@ -64,16 +85,18 @@ function Categories() {
       </div>
 
       <div className="row">
-
         {categories.map((category) => (
           <div
             key={category.id}
             className="col-lg-3 col-md-4 col-sm-6 mb-4"
           >
-            <div className="card category-card shadow-sm border-0 h-100">
-
-              <div className="card-body text-center">
-
+            <div
+              className="card shadow border-0 h-100 text-center"
+              style={{
+                borderRadius: "15px",
+              }}
+            >
+              <div className="card-body">
                 <div
                   className="mb-3"
                   style={{ fontSize: "50px" }}
@@ -86,21 +109,26 @@ function Categories() {
                 </h5>
 
                 <p className="text-muted">
-                  {category.jobs}
+                  {category.jobs} Jobs
                 </p>
 
-                <button className="btn btn-primary w-100">
+                <Link
+                  to={
+                    category.name === "Internships"
+                      ? "/jobs?category=intern"
+                      : `/jobs?category=${encodeURIComponent(
+                          category.name
+                        )}`
+                  }
+                  className="btn btn-primary w-100"
+                >
                   Explore Jobs
-                </button>
-
+                </Link>
               </div>
-
             </div>
           </div>
         ))}
-
       </div>
-
     </div>
   );
 }

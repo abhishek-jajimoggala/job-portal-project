@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import jobsData from "../data/jobs";
 import JobCard from "../components/JobCard";
+import { toast } from "react-toastify";
 
 function Jobs() {
   const location = useLocation();
@@ -14,6 +15,9 @@ function Jobs() {
   const city =
     params.get("location")?.toLowerCase() || "";
 
+  const category =
+    params.get("category")?.toLowerCase() || "";
+
   const adminJobs =
     JSON.parse(localStorage.getItem("adminJobs")) || [];
 
@@ -22,81 +26,107 @@ function Jobs() {
   const [search, setSearch] = useState("");
   const [locationFilter, setLocationFilter] =
     useState("");
+
   const [typeFilter, setTypeFilter] =
     useState("");
 
   const saveJob = (job) => {
-  const loggedUser =
-    JSON.parse(localStorage.getItem("loggedUser"));
+    const loggedUser =
+      JSON.parse(localStorage.getItem("loggedUser"));
 
-  if (!loggedUser) {
-    alert("Please Login First");
-    return;
-  }
+    if (!loggedUser) {
+      toast.warning("Please Login First");
+      return;
+    }
 
-  const key = `savedJobs_${loggedUser.email}`;
+    const key = `savedJobs_${loggedUser.email}`;
 
-  const savedJobs =
-    JSON.parse(localStorage.getItem(key)) || [];
+    const savedJobs =
+      JSON.parse(localStorage.getItem(key)) || [];
 
-  const exists = savedJobs.find(
-    (item) => String(item.id) === String(job.id)
-  );
+    const exists = savedJobs.find(
+      (item) => String(item.id) === String(job.id)
+    );
 
-  if (exists) {
-    alert("Job Already Saved");
-    return;
-  }
+    if (exists) {
+      toast.info("Job Already Saved");
+      return;
+    }
 
-  savedJobs.push(job);
+    savedJobs.push(job);
 
-  localStorage.setItem(
-    key,
-    JSON.stringify(savedJobs)
-  );
+    localStorage.setItem(
+      key,
+      JSON.stringify(savedJobs)
+    );
 
-  alert("Job Saved Successfully");
-};
+    toast.success("Job Saved Successfully");
+  };
 
   const filteredJobs = allJobs.filter((job) => {
-  const searchText = search.toLowerCase();
+    const searchText = search.toLowerCase();
 
-  const jobLocation =
-    job.location?.toLowerCase() || "";
+    const title =
+      job.title?.toLowerCase() || "";
 
-  const skillMatch = job.skills
-    ? (Array.isArray(job.skills)
-        ? job.skills
-        : String(job.skills).split(",")
-      ).some((skill) =>
-        skill.toLowerCase().includes(searchText)
-      )
-    : false;
+    const company =
+      job.company?.toLowerCase() || "";
 
-  return (
-    (search === "" ||
-      job.title?.toLowerCase().includes(searchText) ||
-      job.company?.toLowerCase().includes(searchText) ||
-      job.description?.toLowerCase().includes(searchText) ||
-      skillMatch) &&
+    const description =
+      job.description?.toLowerCase() || "";
 
-    (locationFilter === "" ||
-      jobLocation.includes(
-        locationFilter.toLowerCase()
-      )) &&
+    const jobLocation =
+      job.location?.toLowerCase() || "";
 
-    (typeFilter === "" ||
-      job.type === typeFilter)
-  );
-});
+    const skillMatch = job.skills
+      ? (
+          Array.isArray(job.skills)
+            ? job.skills
+            : String(job.skills).split(",")
+        ).some((skill) =>
+          skill.toLowerCase().includes(searchText)
+        )
+      : false;
+
+    const categoryMatch =
+      category === ""
+        ? true
+        : category === "internships"
+        ? title.includes("intern")
+        : title.includes(category);
+
+    return (
+      (search === "" ||
+        title.includes(searchText) ||
+        company.includes(searchText) ||
+        description.includes(searchText) ||
+        skillMatch) &&
+
+      (keyword === "" ||
+        company.includes(keyword)) &&
+
+      (city === "" ||
+        jobLocation.includes(city)) &&
+
+      (locationFilter === "" ||
+        jobLocation.includes(
+          locationFilter.toLowerCase()
+        )) &&
+
+      (typeFilter === "" ||
+        job.type === typeFilter) &&
+
+      categoryMatch
+    );
+  });
 
   return (
     <div className="container my-5">
       <div className="row">
 
         {/* Filters */}
-        <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 mb-4">
-          <div className="card shadow border-0 p-3 jobs-filter">
+        <div className="col-lg-3 mb-4">
+          <div className="card shadow border-0 p-3">
 
             <h4 className="fw-bold mb-3">
               Filters
@@ -122,21 +152,27 @@ function Jobs() {
               <option value="">
                 All Locations
               </option>
+
               <option value="Hyderabad">
                 Hyderabad
               </option>
+
               <option value="Bangalore">
                 Bangalore
               </option>
-              <option value="Noida">
-                Noida
-              </option>
+
               <option value="Chennai">
                 Chennai
               </option>
+
+              <option value="Noida">
+                Noida
+              </option>
+
               <option value="Vijayawada">
                 Vijayawada
               </option>
+
               <option value="Remote">
                 Remote
               </option>
@@ -152,12 +188,15 @@ function Jobs() {
               <option value="">
                 All Types
               </option>
+
               <option value="Full Time">
                 Full Time
               </option>
+
               <option value="Part Time">
                 Part Time
               </option>
+
               <option value="Remote">
                 Remote
               </option>
@@ -178,13 +217,11 @@ function Jobs() {
         </div>
 
         {/* Job Listings */}
-        <div className="col-xl-9 col-lg-8 col-md-12 col-sm-12">
+        <div className="col-lg-9">
 
-          <h2 className="fw-bold mb-2">
+          <h2 className="fw-bold mb-3">
             Available Jobs ({filteredJobs.length})
           </h2>
-
-          <hr />
 
           {filteredJobs.length === 0 ? (
             <div className="alert alert-warning">

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function AdminLogin() {
   const navigate = useNavigate();
@@ -34,13 +35,13 @@ function AdminLogin() {
   })
 );
 
-  alert("Admin Login Successful");
+  toast.success("Admin Login Successful");
 
   navigate("/admin");
 
   // window.location.reload();
 } else {
-  alert("Invalid Admin Credentials");
+  toast.error("Invalid Admin Credentials");
 }
   };
 

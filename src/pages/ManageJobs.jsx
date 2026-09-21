@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function ManageJobs() {
   const [jobs, setJobs] = useState([]);
@@ -62,7 +63,7 @@ function ManageJobs() {
 
     resetForm();
 
-    alert("Job Added Successfully");
+    toast.success("Job Added Successfully");
   };
 
   const editJob = (job) => {
@@ -94,7 +95,7 @@ function ManageJobs() {
     setEditId(null);
     resetForm();
 
-    alert("Job Updated Successfully");
+    toast.success("Job Updated Successfully");
   };
 
   const deleteJob = (id) => {

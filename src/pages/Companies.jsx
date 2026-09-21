@@ -1,18 +1,35 @@
+import { Link } from "react-router-dom";
+import jobsData from "../data/jobs";
+
 function Companies() {
-  const companies = [
-    { id: 1, name: "TCS", location: "Hyderabad", openings: 120 },
-    { id: 2, name: "Infosys", location: "Bangalore", openings: 95 },
-    { id: 3, name: "Wipro", location: "Chennai", openings: 80 },
-    { id: 4, name: "Accenture", location: "Pune", openings: 140 },
-    { id: 5, name: "IBM", location: "Mumbai", openings: 65 },
-    { id: 6, name: "Capgemini", location: "Hyderabad", openings: 75 },
-    { id: 7, name: "Cognizant", location: "Bangalore", openings: 90 },
-    { id: 8, name: "Tech Mahindra", location: "Noida", openings: 55 },
-  ];
+  const adminJobs =
+    JSON.parse(localStorage.getItem("adminJobs")) || [];
+
+  const allJobs = [...jobsData, ...adminJobs];
+
+  const companies = [];
+
+  allJobs.forEach((job) => {
+    const existingCompany = companies.find(
+      (company) =>
+        company.name?.toLowerCase() ===
+        job.company?.toLowerCase()
+    );
+
+    if (existingCompany) {
+      existingCompany.openings += 1;
+    } else {
+      companies.push({
+        id: companies.length + 1,
+        name: job.company,
+        location: job.location,
+        openings: 1,
+      });
+    }
+  });
 
   return (
     <div className="container py-5">
-
       <div className="text-center mb-5">
         <h2 className="fw-bold text-primary">
           Top Companies Hiring
@@ -24,14 +41,12 @@ function Companies() {
       </div>
 
       <div className="row g-4">
-
         {companies.map((company) => (
           <div
             key={company.id}
             className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12"
           >
             <div className="card company-card shadow border-0 h-100 text-center">
-
               <div className="card-body p-4">
 
                 <div
@@ -43,7 +58,7 @@ function Companies() {
                     fontWeight: "bold",
                   }}
                 >
-                  {company.name.charAt(0)}
+                  {company.name?.charAt(0)}
                 </div>
 
                 <h5 className="fw-bold">
@@ -55,21 +70,24 @@ function Companies() {
                 </p>
 
                 <p className="mb-3">
-                  <strong>{company.openings}</strong> Open Positions
+                  <strong>{company.openings}</strong>{" "}
+                  Open Positions
                 </p>
 
-                <button className="btn btn-primary w-100">
+                <Link
+                  to={`/jobs?keyword=${encodeURIComponent(
+                    company.name
+                  )}`}
+                  className="btn btn-primary w-100"
+                >
                   View Jobs
-                </button>
+                </Link>
 
               </div>
-
             </div>
           </div>
         ))}
-
       </div>
-
     </div>
   );
 }

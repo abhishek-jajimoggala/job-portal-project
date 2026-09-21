@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import {toast} from "react-toastify"
 import jobs from "../data/jobs";
 
 function ApplyJob() {
@@ -10,7 +11,7 @@ function ApplyJob() {
     JSON.parse(localStorage.getItem("loggedUser"));
 
   if (!loggedUser) {
-    alert("Please Login First");
+    toast.warning("Please Login First");
     navigate("/login");
     return null;
   }
@@ -23,7 +24,7 @@ function ApplyJob() {
     !loggedUser.intermediate ||
     !loggedUser.degree
   ) {
-    alert(
+    toast.warning(
       "Please Complete Your Profile Before Applying"
     );
 
@@ -110,7 +111,7 @@ function ApplyJob() {
       );
 
     if (alreadyApplied) {
-      alert("You already applied for this job");
+      toast.warning("You already applied for this job");
       return;
     }
 
@@ -152,7 +153,7 @@ function ApplyJob() {
       JSON.stringify(applications)
     );
 
-    alert(
+    toast.success(
       "Application Submitted Successfully"
     );
 
