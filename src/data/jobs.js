@@ -7,6 +7,7 @@ const jobs = [
     salary: "6 - 10 LPA",
     experience: "2 - 4 Years",
     type: "Full Time",
+    createdAt: "2026-09-20T10:00:00Z",
     skills: [
       "Python",
       "Flask",
@@ -25,6 +26,7 @@ const jobs = [
     salary: "5 - 10 LPA",
     experience: "3 - 4 Years",
     type: "Full Time",
+    createdAt: "2026-09-18T10:00:00Z",
     skills: [
       "Python",
       "Flask",
@@ -35,7 +37,7 @@ const jobs = [
       "Python developer with Flask and MySQL experience."
   },
 
-   {
+  {
     id: 3,
     title: "Python Full Stack",
     company: "Vision Computers",
@@ -43,6 +45,7 @@ const jobs = [
     salary: "2 - 5 LPA",
     experience: "2 - 4 Years",
     type: "Full Time",
+    createdAt: "2026-09-15T10:00:00Z",
     skills: [
       "Python",
       "Flask",
@@ -53,7 +56,5 @@ const jobs = [
       "Python developer with Flask and MySQL experience."
   }
 ];
-
-
 
 export default jobs;

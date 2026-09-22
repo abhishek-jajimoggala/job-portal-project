@@ -1,6 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -32,6 +34,26 @@ import RejectedCandidates from "./pages/RejectedCandidates";
 function App() {
   const location = useLocation();
 
+  // Auto Logout When Browser Tab Closes
+  useEffect(() => {
+    const handleTabClose = () => {
+      localStorage.removeItem("loggedUser");
+      localStorage.removeItem("admin");
+    };
+
+    window.addEventListener(
+      "beforeunload",
+      handleTabClose
+    );
+
+    return () => {
+      window.removeEventListener(
+        "beforeunload",
+        handleTabClose
+      );
+    };
+  }, []);
+
   const hideUserLayout =
     location.pathname.startsWith("/admin");
 
@@ -42,58 +64,29 @@ function App() {
       <Routes>
 
         {/* User Pages */}
-        <Route
-          path="/"
-          element={<Home />}
-        />
-
-        <Route
-          path="/jobs"
-          element={<Jobs />}
-        />
-
-        <Route
-          path="/companies"
-          element={<Companies />}
-        />
-
-        <Route
-          path="/saved-jobs"
-          element={<SavedJobs />}
-        />
-
-        <Route
-          path="/categories"
-          element={<Categories />}
-        />
-
+        <Route path="/" element={<Home />} />
+        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/companies" element={<Companies />} />
+        <Route path="/saved-jobs" element={<SavedJobs />} />
+        <Route path="/categories" element={<Categories />} />
         <Route
           path="/my-applications"
           element={<MyApplications />}
         />
-
-        <Route
-          path="/profile"
-          element={<Profile />}
-        />
+        <Route path="/profile" element={<Profile />} />
 
         {/* Authentication */}
-        <Route
-          path="/login"
-          element={<Login />}
-        />
-
+        <Route path="/login" element={<Login />} />
         <Route
           path="/register"
           element={<Register />}
         />
 
-        {/* Job Details */}
+        {/* Job Pages */}
         <Route
           path="/job/:id"
           element={<JobDetails />}
         />
-
         <Route
           path="/apply/:id"
           element={<ApplyJob />}
@@ -105,19 +98,17 @@ function App() {
           element={<AdminLogin />}
         />
 
-        {/* Admin Dashboard */}
+        {/* Admin Pages */}
         <Route
           path="/admin"
           element={<AdminDashboard />}
         />
 
-        {/* Admin Profile */}
         <Route
           path="/admin/profile"
           element={<AdminProfile />}
         />
 
-        {/* Admin Management */}
         <Route
           path="/admin/jobs"
           element={<ManageJobs />}
@@ -154,11 +145,12 @@ function App() {
         />
 
       </Routes>
+
       <ToastContainer
-  position="top-right"
-  autoClose={2500}
-  theme="colored"
-/>
+        position="top-right"
+        autoClose={2500}
+        theme="colored"
+      />
 
       {!hideUserLayout && <Footer />}
     </>

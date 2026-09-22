@@ -26,9 +26,14 @@ function Jobs() {
   const [search, setSearch] = useState("");
   const [locationFilter, setLocationFilter] =
     useState("");
-
   const [typeFilter, setTypeFilter] =
     useState("");
+
+  // Pagination
+  const [currentPage, setCurrentPage] =
+    useState(1);
+
+  const jobsPerPage = 6;
 
   const saveJob = (job) => {
     const loggedUser =
@@ -101,24 +106,36 @@ function Jobs() {
         company.includes(searchText) ||
         description.includes(searchText) ||
         skillMatch) &&
-
       (keyword === "" ||
         company.includes(keyword)) &&
-
       (city === "" ||
         jobLocation.includes(city)) &&
-
       (locationFilter === "" ||
         jobLocation.includes(
           locationFilter.toLowerCase()
         )) &&
-
       (typeFilter === "" ||
         job.type === typeFilter) &&
-
       categoryMatch
     );
   });
+
+  // Pagination Logic
+  const indexOfLastJob =
+    currentPage * jobsPerPage;
+
+  const indexOfFirstJob =
+    indexOfLastJob - jobsPerPage;
+
+  const currentJobs =
+    filteredJobs.slice(
+      indexOfFirstJob,
+      indexOfLastJob
+    );
+
+  const totalPages = Math.ceil(
+    filteredJobs.length / jobsPerPage
+  );
 
   return (
     <div className="container my-5">
@@ -137,17 +154,19 @@ function Jobs() {
               className="form-control mb-3"
               placeholder="Search Job / Company / Skill"
               value={search}
-              onChange={(e) =>
-                setSearch(e.target.value)
-              }
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setCurrentPage(1);
+              }}
             />
 
             <select
               className="form-select mb-3"
               value={locationFilter}
-              onChange={(e) =>
-                setLocationFilter(e.target.value)
-              }
+              onChange={(e) => {
+                setLocationFilter(e.target.value);
+                setCurrentPage(1);
+              }}
             >
               <option value="">
                 All Locations
@@ -181,9 +200,10 @@ function Jobs() {
             <select
               className="form-select mb-3"
               value={typeFilter}
-              onChange={(e) =>
-                setTypeFilter(e.target.value)
-              }
+              onChange={(e) => {
+                setTypeFilter(e.target.value);
+                setCurrentPage(1);
+              }}
             >
               <option value="">
                 All Types
@@ -208,6 +228,7 @@ function Jobs() {
                 setSearch("");
                 setLocationFilter("");
                 setTypeFilter("");
+                setCurrentPage(1);
               }}
             >
               Reset Filters
@@ -216,11 +237,12 @@ function Jobs() {
           </div>
         </div>
 
-        {/* Job Listings */}
+        {/* Jobs */}
         <div className="col-lg-9">
 
           <h2 className="fw-bold mb-3">
-            Available Jobs ({filteredJobs.length})
+            Available Jobs (
+            {filteredJobs.length})
           </h2>
 
           {filteredJobs.length === 0 ? (
@@ -228,17 +250,55 @@ function Jobs() {
               No Jobs Found
             </div>
           ) : (
-            <div className="row g-4">
+            <>
+              <div className="row g-4">
 
-              {filteredJobs.map((job) => (
-                <JobCard
-                  key={job.id}
-                  job={job}
-                  saveJob={saveJob}
-                />
-              ))}
+                {currentJobs.map((job) => (
+                  <JobCard
+                    key={job.id}
+                    job={job}
+                    saveJob={saveJob}
+                  />
+                ))}
 
-            </div>
+              </div>
+
+              {/* Pagination */}
+              <div className="d-flex justify-content-center align-items-center mt-5">
+
+                <button
+                  className="btn btn-outline-primary me-3"
+                  disabled={currentPage === 1}
+                  onClick={() =>
+                    setCurrentPage(
+                      currentPage - 1
+                    )
+                  }
+                >
+                  Previous
+                </button>
+
+                <span className="fw-bold">
+                  Page {currentPage} of{" "}
+                  {totalPages}
+                </span>
+
+                <button
+                  className="btn btn-outline-primary ms-3"
+                  disabled={
+                    currentPage === totalPages
+                  }
+                  onClick={() =>
+                    setCurrentPage(
+                      currentPage + 1
+                    )
+                  }
+                >
+                  Next
+                </button>
+
+              </div>
+            </>
           )}
 
         </div>

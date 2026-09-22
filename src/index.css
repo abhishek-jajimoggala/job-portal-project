@@ -645,3 +645,16 @@ body{
 }
 
 }
+.job-card {
+  transition: all 0.3s ease;
+  border-radius: 15px;
+}
+
+.job-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.skills-container {
+  min-height: 60px;
+}

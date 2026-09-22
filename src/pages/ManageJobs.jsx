@@ -50,6 +50,7 @@ function ManageJobs() {
     const job = {
       id: Date.now(),
       ...newJob,
+      createdAt: new Date().toISOString(),
     };
 
     const updatedJobs = [...jobs, job];
@@ -77,26 +78,30 @@ function ManageJobs() {
   };
 
   const updateJob = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const updatedJobs = jobs.map((job) =>
-      job.id === editId
-        ? { ...newJob, id: editId }
-        : job
-    );
+  const updatedJobs = jobs.map((job) =>
+    job.id === editId
+      ? {
+          ...newJob,
+          id: editId,
+          createdAt: job.createdAt, // preserve original date
+        }
+      : job
+  );
 
-    setJobs(updatedJobs);
+  setJobs(updatedJobs);
 
-    localStorage.setItem(
-      "adminJobs",
-      JSON.stringify(updatedJobs)
-    );
+  localStorage.setItem(
+    "adminJobs",
+    JSON.stringify(updatedJobs)
+  );
 
-    setEditId(null);
-    resetForm();
+  setEditId(null);
+  resetForm();
 
-    toast.success("Job Updated Successfully");
-  };
+  toast.success("Job Updated Successfully");
+};
 
   const deleteJob = (id) => {
     const confirmDelete = window.confirm(

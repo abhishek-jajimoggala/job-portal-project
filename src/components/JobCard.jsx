@@ -1,14 +1,37 @@
 import { Link } from "react-router-dom";
 
 function JobCard({ job, saveJob }) {
+  const getDaysAgo = (date) => {
+  if (!date) return "Today";
+
+  const today = new Date();
+  const posted = new Date(date);
+
+  const diffTime = today - posted;
+
+  const diffDays = Math.floor(
+    diffTime / (1000 * 60 * 60 * 24)
+  );
+
+  if (diffDays === 0) return "Today";
+  if (diffDays === 1) return "1 Day Ago";
+
+  return `${diffDays} Days Ago`;
+};
   return (
     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
       <div className="card job-card shadow border-0 h-100">
 
         <div className="card-body d-flex flex-column">
 
-          {/* Header */}
-          <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start mb-2 gap-2">
+          {/* Company */}
+          <h5 className="text-primary mb-3">
+            {job.company}
+          </h5>
+
+          {/* Job Title */}
+          <div className="d-flex justify-content-between align-items-start mb-2">
+
             <h4 className="fw-bold">
               {job.title}
             </h4>
@@ -16,14 +39,10 @@ function JobCard({ job, saveJob }) {
             <span className="badge bg-success">
               {job.type || "Full Time"}
             </span>
+
           </div>
 
-          {/* Company */}
-          <h5 className="text-primary">
-            {job.company}
-          </h5>
-
-          {/* Details */}
+          {/* Job Details */}
           <p className="mb-1">
             📍 {job.location}
           </p>
@@ -32,21 +51,26 @@ function JobCard({ job, saveJob }) {
             💰 {job.salary}
           </p>
 
-          <p className="mb-3">
+          <p className="mb-1">
             🧑‍💻 {job.experience}
           </p>
 
+          <p className="mb-3 text-secondary">
+                {getDaysAgo(job.createdAt)}
+          </p>
+
           {/* Description */}
-          <p className="job-description text-muted">
-  {job.description}
-</p>
+          <p className="text-muted">
+            {job.description?.substring(0, 100)}...
+          </p>
+
           {/* Skills */}
           <div className="skills-container mb-3">
-
             {job.skills ? (
-              (Array.isArray(job.skills)
-                ? job.skills
-                : String(job.skills).split(",")
+              (
+                Array.isArray(job.skills)
+                  ? job.skills
+                  : String(job.skills).split(",")
               ).map((skill, index) => (
                 <span
                   key={index}
@@ -60,24 +84,30 @@ function JobCard({ job, saveJob }) {
                 No Skills
               </span>
             )}
-
           </div>
 
           {/* Buttons */}
-          <div className="mt-auto d-flex flex-column flex-sm-row gap-2">
+          <div className="mt-auto d-grid gap-2">
 
             <Link
               to={`/job/${job.id}`}
-              className="btn btn-primary flex-grow-1"
+              className="btn btn-primary"
             >
               View Details
             </Link>
 
+            <Link
+              to={`/apply/${job.id}`}
+              className="btn btn-success"
+            >
+              Apply Now
+            </Link>
+
             <button
-              className="btn btn-outline-success flex-grow-1"
+              className="btn btn-outline-success"
               onClick={() => saveJob(job)}
             >
-              Save
+              Save Job
             </button>
 
           </div>
