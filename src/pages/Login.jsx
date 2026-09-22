@@ -35,7 +35,7 @@ function Login() {
       return;
     }
 
-    sessionStorage.setItem(
+    localStorage.setItem(
       "loggedUser",
       JSON.stringify(user)
     );
