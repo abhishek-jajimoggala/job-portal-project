@@ -1,37 +1,79 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function JobCard({ job, saveJob }) {
+  const navigate = useNavigate();
+
+  const handleApply = () => {
+    const loggedUser = JSON.parse(
+      localStorage.getItem("loggedUser")
+    );
+
+    if (!loggedUser) {
+      alert("Please Login First");
+      navigate("/login");
+      return;
+    }
+
+    // Get latest user data
+    const users =
+      JSON.parse(localStorage.getItem("users")) || [];
+
+    const currentUser = users.find(
+      (user) =>
+        user.email?.toLowerCase() ===
+        loggedUser.email?.toLowerCase()
+    );
+
+    // Profile completion check
+    const isProfileComplete =
+      currentUser &&
+      currentUser.name?.trim() &&
+      currentUser.email?.trim() &&
+      currentUser.phone?.trim() &&
+      currentUser.country?.trim() &&
+      currentUser.state?.trim() &&
+      currentUser.city?.trim() &&
+      currentUser.skills?.trim() &&
+      currentUser.resume;
+
+    if (!isProfileComplete) {
+      alert("Please Complete Your Profile First");
+      navigate("/profile");
+      return;
+    }
+
+    navigate(`/apply/${job.id}`);
+  };
+
   const getDaysAgo = (date) => {
-  if (!date) return "Today";
+    if (!date) return "Today";
 
-  const today = new Date();
-  const posted = new Date(date);
+    const today = new Date();
+    const posted = new Date(date);
 
-  const diffTime = today - posted;
+    const diffTime = today - posted;
 
-  const diffDays = Math.floor(
-    diffTime / (1000 * 60 * 60 * 24)
-  );
+    const diffDays = Math.floor(
+      diffTime / (1000 * 60 * 60 * 24)
+    );
 
-  if (diffDays === 0) return "Today";
-  if (diffDays === 1) return "1 Day Ago";
+    if (diffDays === 0) return "Today";
+    if (diffDays === 1) return "1 Day Ago";
 
-  return `${diffDays} Days Ago`;
-};
+    return `${diffDays} Days Ago`;
+  };
+
   return (
     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
       <div className="card job-card shadow border-0 h-100">
 
         <div className="card-body d-flex flex-column">
 
-          {/* Company */}
           <h5 className="text-primary mb-3">
             {job.company}
           </h5>
 
-          {/* Job Title */}
           <div className="d-flex justify-content-between align-items-start mb-2">
-
             <h4 className="fw-bold">
               {job.title}
             </h4>
@@ -39,10 +81,8 @@ function JobCard({ job, saveJob }) {
             <span className="badge bg-success">
               {job.type || "Full Time"}
             </span>
-
           </div>
 
-          {/* Job Details */}
           <p className="mb-1">
             📍 {job.location}
           </p>
@@ -56,16 +96,15 @@ function JobCard({ job, saveJob }) {
           </p>
 
           <p className="mb-3 text-secondary">
-                {getDaysAgo(job.createdAt)}
+            🕒 {getDaysAgo(job.createdAt)}
           </p>
 
-          {/* Description */}
           <p className="text-muted">
             {job.description?.substring(0, 100)}...
           </p>
 
-          {/* Skills */}
           <div className="skills-container mb-3">
+
             {job.skills ? (
               (
                 Array.isArray(job.skills)
@@ -84,9 +123,9 @@ function JobCard({ job, saveJob }) {
                 No Skills
               </span>
             )}
+
           </div>
 
-          {/* Buttons */}
           <div className="mt-auto d-grid gap-2">
 
             <Link
@@ -96,12 +135,12 @@ function JobCard({ job, saveJob }) {
               View Details
             </Link>
 
-            <Link
-              to={`/apply/${job.id}`}
+            <button
               className="btn btn-success"
+              onClick={handleApply}
             >
               Apply Now
-            </Link>
+            </button>
 
             <button
               className="btn btn-outline-success"

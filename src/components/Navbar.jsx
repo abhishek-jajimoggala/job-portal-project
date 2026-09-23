@@ -1,12 +1,36 @@
 import { Link } from "react-router-dom";
+import { Collapse } from "bootstrap";
+import { useState } from "react";
 
 function Navbar() {
+  const [showDropdown, setShowDropdown] = useState(false);
+
   const loggedUser = JSON.parse(
     localStorage.getItem("loggedUser")
   );
 
   const isAdmin =
     loggedUser?.role === "admin";
+
+  const closeNavbar = () => {
+    const navbar =
+      document.getElementById("navbarNav");
+
+    if (
+      navbar &&
+      navbar.classList.contains("show")
+    ) {
+      const bsCollapse =
+        Collapse.getInstance(navbar) ||
+        new Collapse(navbar, {
+          toggle: false,
+        });
+
+      bsCollapse.hide();
+    }
+
+    setShowDropdown(false);
+  };
 
   const logout = () => {
     localStorage.removeItem("loggedUser");
@@ -46,6 +70,7 @@ function Navbar() {
               <Link
                 className="nav-link"
                 to="/"
+                onClick={closeNavbar}
               >
                 Home
               </Link>
@@ -55,6 +80,7 @@ function Navbar() {
               <Link
                 className="nav-link"
                 to="/jobs"
+                onClick={closeNavbar}
               >
                 Jobs
               </Link>
@@ -64,6 +90,7 @@ function Navbar() {
               <Link
                 className="nav-link"
                 to="/companies"
+                onClick={closeNavbar}
               >
                 Companies
               </Link>
@@ -75,6 +102,7 @@ function Navbar() {
                   <Link
                     className="nav-link"
                     to="/saved-jobs"
+                    onClick={closeNavbar}
                   >
                     Saved Jobs
                   </Link>
@@ -84,6 +112,7 @@ function Navbar() {
                   <Link
                     className="nav-link"
                     to="/categories"
+                    onClick={closeNavbar}
                   >
                     Categories
                   </Link>
@@ -93,6 +122,7 @@ function Navbar() {
                   <Link
                     className="nav-link"
                     to="/my-applications"
+                    onClick={closeNavbar}
                   >
                     Applications
                   </Link>
@@ -109,6 +139,7 @@ function Navbar() {
               <Link
                 to="/login"
                 className="btn btn-light"
+                onClick={closeNavbar}
               >
                 User Login
               </Link>
@@ -116,6 +147,7 @@ function Navbar() {
               <Link
                 to="/admin-login"
                 className="btn btn-warning"
+                onClick={closeNavbar}
               >
                 Admin Login
               </Link>
@@ -123,6 +155,7 @@ function Navbar() {
               <Link
                 to="/register"
                 className="btn btn-success"
+                onClick={closeNavbar}
               >
                 Register
               </Link>
@@ -131,102 +164,121 @@ function Navbar() {
 
           ) : (
 
-            <div className="dropdown">
+            <div className="position-relative">
 
               <button
-                className="btn btn-light dropdown-toggle"
-                data-bs-toggle="dropdown"
+                className="btn btn-light"
+                onClick={() =>
+                  setShowDropdown(!showDropdown)
+                }
               >
-                👤 {loggedUser.name}
+                👤 {loggedUser.name} ▼
               </button>
 
-              <ul className="dropdown-menu dropdown-menu-end">
+              {showDropdown && (
+                <ul
+                  className="dropdown-menu show dropdown-menu-end"
+                  style={{
+                    position: "absolute",
+                    right: 0,
+                    top: "100%",
+                    zIndex: 99999,
+                  }}
+                >
 
-                {!isAdmin && (
-                  <>
-                    <li>
-                      <Link
-                        className="dropdown-item"
-                        to="/profile"
-                      >
-                        My Profile
-                      </Link>
-                    </li>
+                  {!isAdmin && (
+                    <>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          to="/profile"
+                          onClick={closeNavbar}
+                        >
+                          My Profile
+                        </Link>
+                      </li>
 
-                    <li>
-                      <Link
-                        className="dropdown-item"
-                        to="/saved-jobs"
-                      >
-                        Saved Jobs
-                      </Link>
-                    </li>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          to="/saved-jobs"
+                          onClick={closeNavbar}
+                        >
+                          Saved Jobs
+                        </Link>
+                      </li>
 
-                    <li>
-                      <Link
-                        className="dropdown-item"
-                        to="/my-applications"
-                      >
-                        My Applications
-                      </Link>
-                    </li>
-                  </>
-                )}
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          to="/my-applications"
+                          onClick={closeNavbar}
+                        >
+                          My Applications
+                        </Link>
+                      </li>
+                    </>
+                  )}
 
-                {isAdmin && (
-                  <>
-                    <li>
-                      <Link
-                        className="dropdown-item"
-                        to="/admin/profile"
-                      >
-                        Profile
-                      </Link>
-                    </li>
+                  {isAdmin && (
+                    <>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          to="/admin/profile"
+                          onClick={closeNavbar}
+                        >
+                          Profile
+                        </Link>
+                      </li>
 
-                    <li>
-                      <Link
-                        className="dropdown-item"
-                        to="/admin/jobs"
-                      >
-                        Manage Jobs
-                      </Link>
-                    </li>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          to="/admin/jobs"
+                          onClick={closeNavbar}
+                        >
+                          Manage Jobs
+                        </Link>
+                      </li>
 
-                    <li>
-                      <Link
-                        className="dropdown-item"
-                        to="/admin/applications"
-                      >
-                        Applications
-                      </Link>
-                    </li>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          to="/admin/users"
+                          onClick={closeNavbar}
+                        >
+                          Users
+                        </Link>
+                      </li>
 
-                    <li>
-                      <Link
-                        className="dropdown-item"
-                        to="/admin/users"
-                      >
-                        Users
-                      </Link>
-                    </li>
-                  </>
-                )}
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          to="/admin/applications"
+                          onClick={closeNavbar}
+                        >
+                          Applications
+                        </Link>
+                      </li>
+                    </>
+                  )}
 
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
 
-                <li>
-                  <button
-                    className="dropdown-item text-danger"
-                    onClick={logout}
-                  >
-                    Logout
-                  </button>
-                </li>
+                  <li>
+                    <button
+                      className="dropdown-item text-danger"
+                      onClick={logout}
+                    >
+                      Logout
+                    </button>
+                  </li>
 
-              </ul>
+                </ul>
+              )}
 
             </div>
 

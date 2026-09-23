@@ -16,137 +16,64 @@ function AdminNavbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark sticky-top shadow admin-navbar">
-      <div className="container-fluid">
+    <div className="admin-sidebar">
 
-        <Link
-          to="/admin"
-          className="navbar-brand fw-bold"
-        >
-          🚀 JobPortal Carrer
-        </Link>
+      <div>
+        <h3 className="sidebar-logo">
+          🚀 JobPortal
+        </h3>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#adminNavbar"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        
 
-        <div
-          className="collapse navbar-collapse"
-          id="adminNavbar"
-        >
+        <ul className="sidebar-menu">
 
-          <div className="navbar-nav me-auto">
-
-            <Link
-              to="/admin"
-              className="nav-link"
-            >
-              Dashboard
+          <li>
+            <Link to="/admin">
+              📊 Dashboard
             </Link>
+          </li>
 
-            <Link
-              to="/admin/jobs"
-              className="nav-link"
-            >
-              Manage Jobs
+          <li>
+            <Link to="/admin/jobs">
+              💼 Manage Jobs
             </Link>
+          </li>
 
-            <Link
-              to="/admin/posted-jobs"
-              className="nav-link"
-            >
-              Posted Jobs
+          <li>
+            <Link to="/admin/posted-jobs">
+              📢 Posted Jobs
             </Link>
+          </li>
 
-            <Link
-              to="/admin/users"
-              className="nav-link"
-            >
-              Users
+          <li>
+            <Link to="/admin/users">
+              👥 Users
             </Link>
+          </li>
 
-            <Link
-              to="/admin/applications"
-              className="nav-link"
-            >
-              Applications
+          <li>
+            <Link to="/admin/applications">
+              📄 Applications
             </Link>
+          </li>
 
-          </div>
+          <li>
+            <Link to="/admin/profile">
+              ⚙️ Profile
+            </Link>
+          </li>
 
-          {/* Admin Profile Dropdown */}
-          <div className="dropdown">
-
-            <button
-              className="btn btn-light dropdown-toggle"
-              data-bs-toggle="dropdown"
-            >
-              👤 {admin?.name || "Admin"}
-            </button>
-
-            <ul className="dropdown-menu dropdown-menu-end">
-
-              <li>
-                <Link
-                  className="dropdown-item"
-                  to="/admin/profile"
-                >
-                  Profile
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  className="dropdown-item"
-                  to="/admin/jobs"
-                >
-                  Manage Jobs
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  className="dropdown-item"
-                  to="/admin/users"
-                >
-                  Users
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  className="dropdown-item"
-                  to="/admin/applications"
-                >
-                  Applications
-                </Link>
-              </li>
-
-              <li>
-                <hr className="dropdown-divider" />
-              </li>
-
-              <li>
-                <button
-                  className="dropdown-item text-danger"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </li>
-
-            </ul>
-
-          </div>
-
-        </div>
+        </ul>
       </div>
-    </nav>
+
+      <button
+        className="logout-btn"
+        onClick={handleLogout}
+      >
+        🚪 Logout
+      </button>
+
+    </div>
   );
 }
 

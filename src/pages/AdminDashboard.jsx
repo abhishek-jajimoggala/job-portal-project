@@ -1,29 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-import { Bar, Pie } from "react-chartjs-2";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
 function AdminDashboard() {
 
   const isAdmin =
@@ -55,291 +32,333 @@ function AdminDashboard() {
     shortlisted -
     rejected;
 
-  const barData = {
-    labels: [
-      "Users",
-      "Jobs",
-      "Applications",
-      "Shortlisted",
-      "Rejected",
-    ],
-    datasets: [
-      {
-        label: "Statistics",
-        data: [
-          users.length,
-          jobs.length,
-          applications.length,
-          shortlisted,
-          rejected,
-        ],
-        backgroundColor: [
-          "#0d6efd",
-          "#198754",
-          "#0dcaf0",
-          "#ffc107",
-          "#dc3545",
-        ],
-      },
-    ],
-  };
-
-  const pieData = {
-    labels: [
-      "Shortlisted",
-      "Rejected",
-      "Pending",
-    ],
-    datasets: [
-      {
-        data: [
-          shortlisted,
-          rejected,
-          pending,
-        ],
-        backgroundColor: [
-          "#198754",
-          "#dc3545",
-          "#0d6efd",
-        ],
-      },
-    ],
-  };
-
   return (
     <>
       <AdminNavbar />
 
       <div className="container-fluid p-4">
 
-        {/* Header */}
-        <div className="mb-4">
-          <h2 className="fw-bold">
-            Admin Dashboard
-          </h2>
-        </div>
+        {/* Hero Section */}
+<div className="dashboard-hero mb-5">
+  <div className="row align-items-center">
+
+    <div className="col-lg-8">
+      <h1 className="display-5 fw-bold text-white">
+        Welcome Back, Admin 👋
+      </h1>
+      <div className="alert alert-info border-0 shadow-sm rounded-4">
+  🚀 Welcome Admin! Monitor hiring activity,
+  manage jobs and track candidates in real time.
+</div>
+    </div>
+
+    <div className="col-lg-4 text-center">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+        alt="Admin"
+        width="180"
+      />
+    </div>
+
+  </div>
+</div>
 
         {/* Statistics */}
-        <div className="row g-4">
+        <div className="row g-4 mb-5">
 
-          <div className="col-md-3">
-            <div className="card bg-primary text-white shadow border-0">
-              <div className="card-body text-center">
-                <h1>{users.length}</h1>
-                <h5>Total Users</h5>
-              </div>
-            </div>
-          </div>
+  <div className="col">
+    <div className="modern-card blue-card">
+      <h2>{users.length}</h2>
+      <p>Total Users</p>
+    </div>
+  </div>
 
-          <div className="col-md-3">
-            <div className="card bg-success text-white shadow border-0">
-              <div className="card-body text-center">
-                <h1>{jobs.length}</h1>
-                <h5>Jobs Posted</h5>
-              </div>
-            </div>
-          </div>
+  <div className="col">
+    <div className="modern-card green-card">
+      <h2>{jobs.length}</h2>
+      <p>Jobs Posted</p>
+    </div>
+  </div>
 
-          <div className="col-md-3">
-            <div className="card bg-info text-white shadow border-0">
-              <div className="card-body text-center">
-                <h1>{applications.length}</h1>
-                <h5>Applications</h5>
-              </div>
-            </div>
-          </div>
+  <div className="col">
+    <div className="modern-card cyan-card">
+      <h2>{applications.length}</h2>
+      <p>Applications</p>
+    </div>
+  </div>
 
-          <div className="col-md-3">
-            <div className="card bg-warning shadow border-0">
-              <div className="card-body text-center">
-                <h1>{shortlisted}</h1>
-                <h5>Shortlisted</h5>
-              </div>
-            </div>
-          </div>
+  <div className="col">
+    <div className="modern-card orange-card">
+      <h2>{shortlisted}</h2>
+      <p>Shortlisted</p>
+    </div>
+  </div>
 
-          <div className="col-md-3">
-            <div className="card bg-success text-white shadow border-0">
-              <div className="card-body text-center">
-                <h1>{rejected}</h1>
-                <h5>Rejected</h5>
-              </div>
-            </div>
-          </div>
-          
+  <div className="col">
+    <div className="modern-card red-card">
+      <h2>{rejected}</h2>
+      <p>Rejected</p>
+    </div>
+  </div>
 
+  <div className="col">
+    <div className="modern-card purple-card">
+      <h2>{pending}</h2>
+      <p>Pending</p>
+    </div>
+  </div>
+
+</div>
+{/* Dashboard Insights */}
+<div className="row mt-5">
+
+  {/* Recent Activity */}
+  <div className="col-lg-6 mb-4">
+    <div className="card shadow border-0 h-100">
+      <div className="card-body">
+
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h4 className="fw-bold">
+            Recent Activity
+          </h4>
+
+          <span className="badge bg-success">
+            Live
+          </span>
         </div>
 
-        {/* Charts */}
-        <div className="row mt-5">
-
-          <div className="col-lg-8">
-            <div className="card shadow border-0">
-              <div className="card-body">
-
-                <h4 className="mb-4">
-                  Portal Analytics
-                </h4>
-
-                <Bar data={barData} />
-
-              </div>
-            </div>
+        <div className="activity-card users">
+          <div>
+            <h6>Total Users</h6>
+            <h3>{users.length}</h3>
           </div>
-
-          <div className="col-lg-4">
-            <div className="card shadow border-0">
-              <div className="card-body">
-
-                <h4 className="mb-4">
-                  Application Status
-                </h4>
-
-                <Pie data={pieData} />
-
-              </div>
-            </div>
-          </div>
-
+          <span className="activity-icon">
+            👥
+          </span>
         </div>
 
-        {/* Quick Actions */}
-        <div className="card shadow border-0 mt-5">
-          <div className="card-body">
+        <div className="activity-card jobs">
+          <div>
+            <h6>Jobs Posted</h6>
+            <h3>{jobs.length}</h3>
+          </div>
+          <span className="activity-icon">
+            💼
+          </span>
+        </div>
 
-            <h3 className="mb-4">
-              Quick Actions
-            </h3>
+        <div className="activity-card apps">
+          <div>
+            <h6>Applications</h6>
+            <h3>{applications.length}</h3>
+          </div>
+          <span className="activity-icon">
+            📄
+          </span>
+        </div>
 
-            <div className="row g-3">
+        <div className="activity-card shortlist">
+          <div>
+            <h6>Shortlisted</h6>
+            <h3>{shortlisted}</h3>
+          </div>
+          <span className="activity-icon">
+            ✅
+          </span>
+        </div>
 
-              <div className="col-md-3">
-                <Link
-                  to="/admin/jobs"
-                  className="btn btn-primary w-100"
-                >
-                  Manage Jobs
-                </Link>
-              </div>
+        <div className="activity-card reject">
+          <div>
+            <h6>Rejected</h6>
+            <h3>{rejected}</h3>
+          </div>
+          <span className="activity-icon">
+            ❌
+          </span>
+        </div>
 
-              <div className="col-md-3">
-                <Link
-                  to="/admin/posted-jobs"
-                  className="btn btn-secondary w-100"
-                >
-                  Posted Jobs
-                </Link>
-              </div>
+      </div>
+    </div>
+  </div>
 
-              <div className="col-md-3">
-                <Link
-                  to="/admin/applications"
-                  className="btn btn-info w-100"
-                >
-                  Applications
-                </Link>
-              </div>
+  {/* Hiring Progress */}
+  <div className="col-lg-6 mb-4">
+    <div className="card shadow border-0 h-100">
+      <div className="card-body">
 
-              <div className="col-md-3">
-                <Link
-                  to="/admin/users"
-                  className="btn btn-success w-100"
-                >
-                  Users
-                </Link>
-              </div>
+        <h4 className="fw-bold mb-4">
+          Hiring Progress
+        </h4>
 
-              <div className="col-md-3">
-                <Link
-                  to="/admin/shortlisted"
-                  className="btn btn-warning w-100"
-                >
-                  Shortlisted
-                </Link>
-              </div>
+        <p className="fw-semibold">
+          Applications
+        </p>
 
-              <div className="col-md-3">
-                <Link
-                  to="/admin/rejected"
-                  className="btn btn-danger w-100"
-                >
-                  Rejected
-                </Link>
-              </div>
-
-              <div className="col-md-3">
-                <Link
-                  to="/admin/resumes"
-                  className="btn btn-dark w-100"
-                >
-                  Resumes
-                </Link>
-              </div>
-
-            </div>
-
+        <div className="progress mb-4" style={{height:"25px"}}>
+          <div
+            className="progress-bar bg-primary"
+            style={{ width: "100%" }}
+          >
+            {applications.length}
           </div>
         </div>
 
-        {/* Summary Table */}
-        <div className="card shadow border-0 mt-5">
-          <div className="card-body">
+        <p className="fw-semibold">
+          Shortlisted
+        </p>
 
-            <h3 className="mb-4">
-              Dashboard Summary
-            </h3>
+        <div className="progress mb-4" style={{height:"25px"}}>
+          <div
+            className="progress-bar bg-success"
+            style={{
+              width: `${
+                applications.length
+                  ? (shortlisted / applications.length) * 100
+                  : 0
+              }%`,
+            }}
+          >
+            {shortlisted}
+          </div>
+        </div>
 
-            <table className="table table-bordered">
+        <p className="fw-semibold">
+          Rejected
+        </p>
 
-              <thead>
-                <tr>
-                  <th>Category</th>
-                  <th>Count</th>
-                </tr>
-              </thead>
+        <div className="progress mb-4" style={{height:"25px"}}>
+          <div
+            className="progress-bar bg-danger"
+            style={{
+              width: `${
+                applications.length
+                  ? (rejected / applications.length) * 100
+                  : 0
+              }%`,
+            }}
+          >
+            {rejected}
+          </div>
+        </div>
 
-              <tbody>
+        <p className="fw-semibold">
+          Pending
+        </p>
 
-                <tr>
-                  <td>Total Users</td>
-                  <td>{users.length}</td>
-                </tr>
-
-                <tr>
-                  <td>Total Jobs</td>
-                  <td>{jobs.length}</td>
-                </tr>
-
-                <tr>
-                  <td>Total Applications</td>
-                  <td>{applications.length}</td>
-                </tr>
-
-                <tr>
-                  <td>Shortlisted</td>
-                  <td>{shortlisted}</td>
-                </tr>
-
-                <tr>
-                  <td>Rejected</td>
-                  <td>{rejected}</td>
-                </tr>
-
-                <tr>
-                  <td>Pending</td>
-                  <td>{pending}</td>
-                </tr>
-
-              </tbody>
-
-            </table>
-
+        <div className="progress" style={{height:"25px"}}>
+          <div
+            className="progress-bar bg-warning"
+            style={{
+              width: `${
+                applications.length
+                  ? (pending / applications.length) * 100
+                  : 0
+              }%`,
+            }}
+          >
+            {pending}
           </div>
         </div>
 
       </div>
-    </>
-  );
+    </div>
+  </div>
+
+</div>
+
+        <div className="card shadow border-0 mt-5">
+  <div className="card-body">
+
+    <h3 className="fw-bold mb-4">
+      Quick Access
+    </h3>
+
+    <div className="row g-4">
+
+      <div className="col-md-4">
+        <Link
+          to="/admin/jobs"
+          className="text-decoration-none"
+        >
+          <div className="quick-card jobs-card">
+            <h5>💼 Manage Jobs</h5>
+            <p>Create and manage jobs</p>
+          </div>
+        </Link>
+      </div>
+
+      <div className="col-md-4">
+        <Link
+          to="/admin/applications"
+          className="text-decoration-none"
+        >
+          <div className="quick-card app-card">
+            <h5>📄 Applications</h5>
+            <p>Review applications</p>
+          </div>
+        </Link>
+      </div>
+
+      <div className="col-md-4">
+        <Link
+          to="/admin/users"
+          className="text-decoration-none"
+        >
+          <div className="quick-card user-card">
+            <h5>👥 Users</h5>
+            <p>Manage registered users</p>
+          </div>
+        </Link>
+      </div>
+
+      <div className="col-md-4">
+        <Link
+          to="/admin/posted-jobs"
+          className="text-decoration-none"
+        >
+          <div className="quick-card post-card">
+            <h5>📢 Posted Jobs</h5>
+            <p>View all jobs</p>
+          </div>
+        </Link>
+      </div>
+
+      <div className="col-md-4">
+        <Link
+          to="/admin/shortlisted"
+          className="text-decoration-none"
+        >
+          <div className="quick-card short-card">
+            <h5>✅ Shortlisted</h5>
+            <p>Selected candidates</p>
+          </div>
+        </Link>
+      </div>
+
+      <div className="col-md-4">
+        <Link
+          to="/admin/rejected"
+          className="text-decoration-none"
+        >
+          <div className="quick-card reject-card">
+            <h5>❌ Rejected</h5>
+            <p>Rejected candidates</p>
+          </div>
+        </Link>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+            {/* Dashboard Overview */}
+      {/*  */}
+
+    </div> {/* container-fluid close */}
+
+  </>  
+   ); 
 }
 
 export default AdminDashboard;

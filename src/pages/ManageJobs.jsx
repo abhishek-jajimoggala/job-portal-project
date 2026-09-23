@@ -131,9 +131,13 @@ function ManageJobs() {
         {/* Header */}
         <div className="d-flex justify-content-between align-items-center mb-4">
 
-          <h2 className="fw-bold text-primary">
-            Manage Jobs
-          </h2>
+          <div className="manage-jobs-header">
+  <h1>💼 Hiring Management</h1>
+  <p>
+    Create, update and manage job openings
+    across your organization
+  </p>
+</div>
 
           <div className="d-flex gap-2">
 
