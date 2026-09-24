@@ -1,0 +1,15 @@
+.saved-job-card{
+  border-radius:16px;
+  transition:0.3s;
+}
+
+.saved-job-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 15px 35px rgba(0,0,0,.15) !important;
+}
+
+.saved-job-card .btn{
+  height:45px;
+  font-weight:600;
+  border-radius:10px;
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import "../styles/SavedJobs.css";
 
 function SavedJobs() {
   const [savedJobs, setSavedJobs] = useState([]);
@@ -20,17 +21,19 @@ function SavedJobs() {
 
 
   const removeJob = (id) => {
-    const updatedJobs = savedJobs.filter(
-      (job) => job.id !== id
-    );
+  const updatedJobs = savedJobs.filter(
+    (job) => job.id !== id
+  );
 
-    setSavedJobs(updatedJobs);
+  setSavedJobs(updatedJobs);
 
-    localStorage.setItem(
-      `savedJobs_${loggedUser.email}`,
-      JSON.stringify(updatedJobs)
-    );
-  };
+  localStorage.setItem(
+    `savedJobs_${loggedUser.email}`,
+    JSON.stringify(updatedJobs)
+  );
+
+  toast.success("Job removed successfully");
+};
 
   return (
     <div className="container my-5">
@@ -63,7 +66,7 @@ function SavedJobs() {
                   <p>💰 {job.salary}</p>
                   <p>💼 {job.type}</p>
 
-                  <div className="d-flex flex-column flex-sm-row gap-2">
+                  <div className="d-grid gap-2 mt-3">
                     <Link
                       to={`/job/${job.id}`}
                       className="btn btn-primary btn-sm"
@@ -85,6 +88,7 @@ function SavedJobs() {
                       }
                     >
                       Remove
+
                     </button>
                   </div>
                 </div>

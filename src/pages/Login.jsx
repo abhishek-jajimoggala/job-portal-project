@@ -1,6 +1,8 @@
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../styles/Login.css";
+import jobImage from "../assets/jobs.jpg";
 
 function Login() {
   const navigate = useNavigate();
@@ -41,81 +43,87 @@ function Login() {
     );
 
     toast.success(`Welcome ${user.name}`);
-
     navigate("/");
-    
   };
 
   return (
-    <div className="container-fluid">
-      <div
-        className="row justify-content-center align-items-center"
-        style={{ minHeight: "100vh" }}
-      >
-        <div className="col-11 col-sm-10 col-md-8 col-lg-5 col-xl-4">
+    <div className="login-page">
+      <div className="login-container">
 
-          <div className="card shadow-lg border-0">
-            <div className="card-body p-4 p-md-5">
+        {/* Left Side */}
+        <div className="login-left">
+          <div className="overlay">
 
-              <h2 className="text-center text-primary fw-bold mb-4">
-                Login
-              </h2>
+            <h1>
+              Find Your
+              <span style={{ color: "#60a5fa" }}>
+                {" "}Dream Job
+              </span>
+            </h1>
 
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label className="form-label">
-                    Email
-                  </label>
+            <p>
+              Search thousands of jobs from top
+              companies and apply instantly.
+            </p>
 
-                  <input
-                    type="email"
-                    name="email"
-                    className="form-control form-control-lg"
-                    placeholder="Enter Email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+            <img
+              src={jobImage}
+              alt="Job Portal"
+              className="login-image"
+            />
 
-                <div className="mb-4">
-                  <label className="form-label">
-                    Password
-                  </label>
-
-                  <input
-                    type="password"
-                    name="password"
-                    className="form-control form-control-lg"
-                    placeholder="Enter Password"
-                    value={form.password}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="btn btn-primary btn-lg w-100"
-                >
-                  Login
-                </button>
-              </form>
-
-              <p className="text-center mt-4 mb-0">
-                Don't have an account?
-                <Link
-                  to="/register"
-                  className="ms-2 text-decoration-none fw-semibold"
-                >
-                  Register
-                </Link>
-              </p>
-
-            </div>
           </div>
-
         </div>
+
+        {/* Right Side */}
+        <div className="login-right">
+          <div className="login-card">
+
+            <h2>User Login</h2>
+
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter Email"
+                  value={form.email}
+                  onChange={handleChange}
+                  className="form-control"
+                  required
+                />
+              </div>
+
+              <div className="mb-3">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter Password"
+                  value={form.password}
+                  onChange={handleChange}
+                  className="form-control"
+                  required
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="btn btn-primary w-100"
+              >
+                Login
+              </button>
+            </form>
+
+            <p className="register-text">
+              Don't have an account?
+              <Link to="/register">
+                {" "}Register
+              </Link>
+            </p>
+
+          </div>
+        </div>
+
       </div>
     </div>
   );

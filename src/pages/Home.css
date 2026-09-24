@@ -1,268 +1,83 @@
-/* =========================
-   HOME PAGE THEME
-========================= */
-
-.home-page {
-  background: linear-gradient(
-    135deg,
-    #f8fbff,
-    #eef5ff
-  );
-  min-height: 100vh;
+.home-page{
+  width:100%;
+  overflow-x:hidden;
 }
 
 /* Section Title */
-
-.section-title {
-  font-size: 32px;
-  font-weight: 800;
-  color: #111827;
-  margin-bottom: 25px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.08);
+.section-title{
+  font-size:32px;
+  font-weight:700;
+  color:#0f172a;
+  margin-bottom:30px;
 }
 
-
-/* =========================
-   JOB CARDS
-========================= */
-
-.job-card {
-  border: none;
-  border-radius: 18px;
-  transition: all 0.3s ease;
-  overflow: hidden;
+/* Company Slider */
+.company-slider{
+  overflow:hidden;
+  position:relative;
+  width:100%;
+  padding:20px 0;
 }
 
-.job-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px
-    rgba(13, 110, 253, 0.2);
+.company-track{
+  display:flex;
+  width:max-content;
+  animation:scroll 25s linear infinite;
 }
 
-.job-card .card-body {
-  padding: 20px;
+.company-item{
+  min-width:220px;
+  margin-right:20px;
+  background:#fff;
+  border-radius:15px;
+  padding:18px;
+  text-align:center;
+  font-weight:600;
+  box-shadow:0 5px 15px rgba(0,0,0,.1);
 }
 
-/* =========================
-   TOP COMPANIES
-========================= */
-
-.company-slider {
-  width: 100%;
-  overflow: hidden;
-  background: white;
-  border-radius: 20px;
-  padding: 25px 0;
-  box-shadow: 0 10px 25px
-    rgba(0, 0, 0, 0.08);
-}
-
-.company-track {
-  display: flex;
-  width: max-content;
-  animation: companyScroll 25s linear infinite;
-}
-
-.company-track:hover {
-  animation-play-state: paused;
-}
-
-.company-item {
-  flex-shrink: 0;
-  margin-right: 25px;
-  padding: 15px 30px;
-  background: linear-gradient(
-    135deg,
-    #0d6efd,
-    #4f8cff
-  );
-  color: white;
-  font-weight: 600;
-  border-radius: 12px;
-  min-width: 200px;
-  text-align: center;
-  transition: 0.3s;
-}
-
-.company-item:hover {
-  transform: scale(1.05);
-}
-
-@keyframes companyScroll {
-  0% {
-    transform: translateX(0);
+@keyframes scroll{
+  from{
+    transform:translateX(0);
   }
-
-  100% {
-    transform: translateX(-50%);
+  to{
+    transform:translateX(-50%);
   }
 }
 
-/* =========================
-   REVIEW CARDS
-========================= */
-
-.review-card {
-  border: none;
-  border-radius: 18px;
-  transition: 0.3s;
+/* Reviews */
+.review-card{
+  border:none;
+  border-radius:20px;
+  transition:.3s;
 }
 
-.review-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 25px
-    rgba(0, 0, 0, 0.1);
+.review-card:hover{
+  transform:translateY(-8px);
 }
 
-/* =========================
-   STATISTICS
-========================= */
-
-.stat-card {
-  border: none;
-  border-radius: 18px;
-  transition: 0.3s;
+/* Statistics */
+.stat-card{
+  border:none;
+  border-radius:20px;
+  transition:.3s;
 }
 
-.stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px
-    rgba(0, 0, 0, 0.12);
-}
-.hero-section {
-  background: linear-gradient(
-    135deg,
-    #0d6efd,
-    #4f8cff
-  );
-  padding: 100px 0;
-  text-align: center;
+.stat-card:hover{
+  transform:translateY(-8px);
 }
 
-.hero-section h1 {
-  color: #ffffff;
-  font-size: 3.5rem;
-  font-weight: 800;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-}
+/* Mobile */
+@media(max-width:768px){
 
-.hero-section p {
-  color: #f8f9fa;
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 24px;
+  .section-title{
+    font-size:24px;
+    text-align:center;
   }
 
-  .company-item {
-    min-width: 150px;
-    padding: 12px 20px;
-  }
-}
-/* Mobile Responsive */
-
-@media (max-width: 768px) {
-
-  .hero-section {
-    padding: 50px 15px;
-  }
-
-  .hero-section h1 {
-    font-size: 2rem;
-  }
-
-  .hero-section p {
-    font-size: 14px;
-  }
-
-  .section-title {
-    font-size: 22px;
-    text-align: center;
-  }
-
-  .company-item {
-    min-width: 130px;
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  .review-card,
-  .stat-card {
-    margin-bottom: 15px;
-  }
-
-}
-
-@media (max-width: 576px) {
-
-  .hero-section h1 {
-    font-size: 1.7rem;
-  }
-
-  .hero-section p {
-    font-size: 13px;
-  }
-
-  .company-item {
-    min-width: 110px;
-    font-size: 12px;
-  }
-
-}
-.hero-section {
-  background: linear-gradient(
-    135deg,
-    #0d6efd,
-    #4f8cff
-  );
-  padding: 100px 0;
-}
-
-.search-box {
-  max-width: 1000px;
-  margin: auto;
-}
-
-@media (max-width: 768px) {
-
-  .hero-section {
-    padding: 60px 15px;
-  }
-
-  .hero-section h1 {
-    font-size: 2rem;
-  }
-
-  .hero-section p {
-    font-size: 14px;
-  }
-
-  .search-box {
-    padding: 15px !important;
-  }
-
-  .btn-lg,
-  .form-control-lg {
-    font-size: 1rem;
-  }
-
-}
-
-@media (max-width: 576px) {
-
-  .hero-section h1 {
-    font-size: 1.6rem;
-  }
-
-  .hero-section p {
-    font-size: 13px;
+  .company-item{
+    min-width:170px;
+    font-size:14px;
   }
 
 }

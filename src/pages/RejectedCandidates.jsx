@@ -1,5 +1,6 @@
 import AdminNavbar from "../components/AdminNavbar";
 import { Link } from "react-router-dom";
+import "./RejectedCandidates.css";
 
 function RejectedCandidates() {
   const applications =
@@ -16,59 +17,36 @@ function RejectedCandidates() {
     <>
       <AdminNavbar />
 
-      <div
-        className="container-fluid min-vh-100 py-4"
-        style={{
-          background:
-            "linear-gradient(135deg,#f8fafc,#eef2ff,#fdf2f8)",
-        }}
-      >
-        {/* Header */}
-        <div className="container">
+      <div className="rejected-page">
 
-          <div className="d-flex justify-content-between align-items-center mb-4">
+        <div className="rejected-container">
+
+          {/* Header */}
+          <div className="rejected-header">
             <div>
-              <h1 className="fw-bold text-danger mb-1">
-                ❌ Rejected Candidates
-              </h1>
-
-              <p className="text-muted">
-                Manage rejected applicants
-              </p>
+              <h1>❌ Rejected Candidates</h1>
+              <p>Manage rejected applicants</p>
             </div>
 
             <Link
               to="/admin"
-              className="btn btn-dark rounded-pill px-4"
+              className="btn btn-dark dashboard-btn"
             >
               ← Dashboard
             </Link>
           </div>
 
           {/* Stats Card */}
-          <div
-            className="card border-0 shadow-lg mb-5"
-            style={{
-              borderRadius: "20px",
-              background:
-                "linear-gradient(135deg,#dc3545,#ff6b6b)",
-              color: "#fff",
-            }}
-          >
-            <div className="card-body text-center py-4">
-              <h2 className="fw-bold">
-                {rejected.length}
-              </h2>
-
-              <p className="mb-0">
-                Total Rejected Candidates
-              </p>
+          <div className="card shadow-lg border-0 rejected-stats-card">
+            <div className="card-body text-center">
+              <h2>{rejected.length}</h2>
+              <p>Total Rejected Candidates</p>
             </div>
           </div>
 
           {/* Empty State */}
           {rejected.length === 0 ? (
-            <div className="card shadow border-0 p-5 text-center">
+            <div className="card border-0 shadow p-5 text-center">
               <h3>🎉 No Rejected Candidates</h3>
               <p className="text-muted">
                 All applications are active.
@@ -83,11 +61,7 @@ function RejectedCandidates() {
               return (
                 <div
                   key={index}
-                  className="card border-0 shadow-lg mb-4"
-                  style={{
-                    borderRadius: "25px",
-                    overflow: "hidden",
-                  }}
+                  className="card shadow-lg border-0 mb-4 rejected-card"
                 >
                   <div className="card-body p-4">
 
@@ -101,15 +75,8 @@ function RejectedCandidates() {
                             user?.photo ||
                             "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
                           }
-                          alt="Profile"
-                          style={{
-                            width: "120px",
-                            height: "120px",
-                            objectFit: "cover",
-                            borderRadius: "50%",
-                            border:
-                              "5px solid #dc3545",
-                          }}
+                          alt="profile"
+                          className="candidate-img"
                         />
 
                       </div>
@@ -121,35 +88,32 @@ function RejectedCandidates() {
                           {app.userName}
                         </h3>
 
-                        <p className="mb-1 text-muted">
-                          📧 {app.userEmail}
-                        </p>
+                        <p>📧 {app.userEmail}</p>
 
-                        <p className="mb-1">
+                        <p>
                           📱 {user?.phone || "N/A"}
                         </p>
 
-                        <p className="mb-1">
+                        <p>
                           📍 {user?.state || "N/A"}
                         </p>
 
-                        <p className="mb-1">
+                        <p>
                           💼 <b>{app.title}</b>
                         </p>
 
-                        <p className="text-muted">
+                        <p>
                           📅 {app.appliedDate}
                         </p>
 
-                        <div className="mt-2">
-
+                        <div>
                           {user?.skills ? (
                             user.skills
                               .split(",")
                               .map((skill, i) => (
                                 <span
                                   key={i}
-                                  className="badge rounded-pill bg-secondary me-2 mb-2 px-3 py-2"
+                                  className="badge bg-secondary me-2 mb-2"
                                 >
                                   {skill.trim()}
                                 </span>
@@ -157,7 +121,6 @@ function RejectedCandidates() {
                           ) : (
                             <span>No Skills</span>
                           )}
-
                         </div>
 
                       </div>
@@ -165,20 +128,14 @@ function RejectedCandidates() {
                       {/* Actions */}
                       <div className="col-lg-3 text-center">
 
-                        <span
-                          className="badge fs-6 px-4 py-3 mb-3"
-                          style={{
-                            background:
-                              "linear-gradient(135deg,#dc3545,#ff6b6b)",
-                          }}
-                        >
+                        <span className="badge bg-danger fs-6 px-4 py-2 mb-3">
                           Rejected
                         </span>
 
                         <div className="d-grid gap-2">
 
                           <button
-                            className="btn btn-outline-primary rounded-pill"
+                            className="btn btn-outline-primary"
                             data-bs-toggle="modal"
                             data-bs-target={`#profile${index}`}
                           >
@@ -190,7 +147,7 @@ function RejectedCandidates() {
                               href={user.resume}
                               target="_blank"
                               rel="noreferrer"
-                              className="btn btn-danger rounded-pill"
+                              className="btn btn-danger"
                             >
                               View Resume
                             </a>
@@ -211,15 +168,9 @@ function RejectedCandidates() {
                     tabIndex="-1"
                   >
                     <div className="modal-dialog modal-lg modal-dialog-centered">
-                      <div className="modal-content border-0 shadow-lg">
+                      <div className="modal-content">
 
-                        <div
-                          className="modal-header text-white"
-                          style={{
-                            background:
-                              "linear-gradient(135deg,#dc3545,#ff6b6b)",
-                          }}
-                        >
+                        <div className="modal-header bg-danger text-white">
                           <h5 className="modal-title">
                             Candidate Profile
                           </h5>
@@ -241,12 +192,12 @@ function RejectedCandidates() {
                                 "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
                               }
                               alt=""
-                              width="150"
-                              height="150"
+                              width="140"
+                              height="140"
                               className="rounded-circle border border-4 border-danger"
                             />
 
-                            <h3 className="mt-3 fw-bold">
+                            <h3 className="mt-3">
                               {user?.name}
                             </h3>
 
@@ -279,9 +230,7 @@ function RejectedCandidates() {
 
                               <p>
                                 <b>Intermediate:</b>{" "}
-                                {user?.intermediate ||
-                                  "N/A"}
-                                %
+                                {user?.intermediate || "N/A"}%
                               </p>
 
                               <p>
@@ -294,9 +243,7 @@ function RejectedCandidates() {
 
                           <hr />
 
-                          <h5 className="fw-bold">
-                            Skills
-                          </h5>
+                          <h5>Skills</h5>
 
                           <p>
                             {user?.skills ||
@@ -313,7 +260,9 @@ function RejectedCandidates() {
               );
             })
           )}
+
         </div>
+
       </div>
     </>
   );

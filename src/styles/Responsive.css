@@ -1,0 +1,37 @@
+@media(max-width:768px){
+
+  .section-title{
+    font-size:24px;
+  }
+
+  .hero-title{
+    font-size:38px;
+  }
+
+  .hero-subtitle{
+    font-size:18px;
+  }
+
+  .navbar-brand{
+    font-size:22px!important;
+  }
+
+  .btn{
+    width:100%;
+  }
+}
+
+@media(max-width:576px){
+
+  .hero-title{
+    font-size:30px;
+  }
+
+  .section-title{
+    font-size:22px;
+  }
+
+  .card{
+    border-radius:12px;
+  }
+}

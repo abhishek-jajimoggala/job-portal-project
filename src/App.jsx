@@ -2,6 +2,13 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
+//import "./styles/Register.css";
+import "./styles/Global.css";
+import "./styles/Navbar.css";
+import "./styles/Hero.css";
+//import "./styles/Dashboard.css";
+import "./styles/Responsive.css";
+import "./styles/Login.css";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -26,7 +33,6 @@ import AdminProfile from "./pages/AdminProfile";
 import ManageJobs from "./pages/ManageJobs";
 import AdminApplications from "./pages/AdminApplications";
 import UserProfiles from "./pages/UserProfiles";
-import ViewResumes from "./pages/ViewResumes";
 import PostedJobs from "./pages/PostedJobs";
 import ShortlistedCandidates from "./pages/ShortlistedCandidates";
 import RejectedCandidates from "./pages/RejectedCandidates";
@@ -34,17 +40,13 @@ import RejectedCandidates from "./pages/RejectedCandidates";
 function App() {
   const location = useLocation();
 
-  // Auto Logout When Browser Tab Closes
   useEffect(() => {
     const handleTabClose = () => {
       localStorage.removeItem("loggedUser");
       localStorage.removeItem("admin");
     };
 
-    window.addEventListener(
-      "beforeunload",
-      handleTabClose
-    );
+    window.addEventListener("beforeunload", handleTabClose);
 
     return () => {
       window.removeEventListener(
@@ -62,7 +64,6 @@ function App() {
       {!hideUserLayout && <Navbar />}
 
       <Routes>
-
         {/* User Pages */}
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<Jobs />} />
@@ -75,14 +76,14 @@ function App() {
         />
         <Route path="/profile" element={<Profile />} />
 
-        {/* Authentication */}
+        {/* Auth */}
         <Route path="/login" element={<Login />} />
         <Route
           path="/register"
           element={<Register />}
         />
 
-        {/* Job Pages */}
+        {/* Job Details */}
         <Route
           path="/job/:id"
           element={<JobDetails />}
@@ -92,13 +93,12 @@ function App() {
           element={<ApplyJob />}
         />
 
-        {/* Admin Login */}
+        {/* Admin */}
         <Route
           path="/admin-login"
           element={<AdminLogin />}
         />
 
-        {/* Admin Pages */}
         <Route
           path="/admin"
           element={<AdminDashboard />}
@@ -125,11 +125,6 @@ function App() {
         />
 
         <Route
-          path="/admin/resumes"
-          element={<ViewResumes />}
-        />
-
-        <Route
           path="/admin/posted-jobs"
           element={<PostedJobs />}
         />
@@ -143,7 +138,6 @@ function App() {
           path="/admin/rejected"
           element={<RejectedCandidates />}
         />
-
       </Routes>
 
       <ToastContainer

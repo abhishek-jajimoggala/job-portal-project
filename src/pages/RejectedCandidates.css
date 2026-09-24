@@ -1,0 +1,78 @@
+.rejected-page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 90px 20px 20px;
+  background: linear-gradient(
+    135deg,
+    #f8fafc,
+    #eef2ff,
+    #fdf2f8
+  );
+}
+
+.rejected-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.rejected-header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #dc3545;
+}
+
+.rejected-header p {
+  color: #64748b;
+  margin: 0;
+}
+
+.dashboard-btn {
+  white-space: nowrap;
+}
+
+.rejected-stats-card {
+  border-radius: 20px;
+  margin-bottom: 30px;
+  background: linear-gradient(
+    135deg,
+    #dc3545,
+    #ff6b6b
+  );
+  color: white;
+}
+
+.rejected-card {
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.candidate-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #dc3545;
+}
+
+.modal-content {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .rejected-page {
+    padding: 80px 12px 12px;
+  }
+
+  .rejected-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .rejected-header h1 {
+    font-size: 26px;
+  }
+}

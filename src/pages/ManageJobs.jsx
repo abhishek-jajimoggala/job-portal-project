@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import "./ManageJobs.css";
 
 function ManageJobs() {
   const [jobs, setJobs] = useState([]);
@@ -126,34 +127,42 @@ function ManageJobs() {
     <>
       <AdminNavbar />
 
-      <div className="container my-5">
+      <div className="manage-jobs-page">
+
 
         {/* Header */}
-        <div className="d-flex justify-content-between align-items-center mb-4">
+        <div className="row align-items-center mb-4">
 
-          <div className="manage-jobs-header">
-  <h1>💼 Hiring Management</h1>
-  <p>
-    Create, update and manage job openings
-    across your organization
-  </p>
+  <div className="col-lg-8 col-md-12">
+    <div className="manage-jobs-header">
+      <h1>💼 Hiring Management</h1>
+      <p>
+        Create, update and manage job openings
+        across your organization
+      </p>
+    </div>
+  </div>
+
+  <div className="col-lg-4 col-md-12 text-lg-end mt-3 mt-lg-0">
+
+    <div className="d-inline-flex gap-2 flex-wrap">
+
+      <div className="btn btn-primary">
+        Total Jobs: {jobs.length}
+      </div>
+
+      <Link
+        to="/admin"
+        className="btn btn-dark"
+      >
+        ← Dashboard
+      </Link>
+
+    </div>
+
+  </div>
+
 </div>
-
-          <div className="d-flex gap-2">
-
-            <div className="bg-primary text-white px-3 py-2 rounded">
-              Total Jobs: {jobs.length}
-            </div>
-
-            <Link
-              to="/admin"
-              className="btn btn-dark"
-            >
-              ← Dashboard
-            </Link>
-
-          </div>
-        </div>
 
         {/* Add / Update Form */}
         <div className="card shadow border-0 mb-5">

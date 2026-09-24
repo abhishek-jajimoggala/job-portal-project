@@ -1,0 +1,99 @@
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  padding:12px 20px;
+}
+
+.navbar-brand{
+  font-size:1.6rem;
+  font-weight:700;
+}
+
+/* Center Nav Links */
+.navbar-nav{
+  margin:0 auto;
+  gap:10px;
+}
+
+.nav-link{
+  font-weight:500;
+  padding:8px 14px !important;
+  transition:0.3s;
+}
+
+.nav-link:hover{
+  color:#ffd54f !important;
+}
+
+/* Dropdown */
+
+.dropdown-menu{
+  min-width:220px;
+  border:none;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,.15);
+  z-index:99999;
+}
+
+.dropdown-item{
+  padding:10px 15px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:991px){
+
+  .navbar-nav{
+    margin-top:15px;
+    text-align:center;
+  }
+
+  .navbar .d-flex{
+    flex-direction:column;
+    width:100%;
+    margin-top:15px;
+    gap:10px;
+  }
+
+  .navbar .btn{
+    width:100%;
+  }
+
+  .position-relative{
+    width:100%;
+    margin-top:15px;
+  }
+
+  .position-relative .btn{
+    width:100%;
+  }
+
+}
+.navbar-nav{
+  gap:10px;
+}
+
+.nav-link{
+  font-size:16px;
+  font-weight:500;
+}
+
+@media(max-width:991px){
+
+  .navbar-nav{
+    margin-top:15px;
+    text-align:center;
+  }
+
+  .navbar-nav .nav-item{
+    margin-bottom:5px;
+  }
+
+}

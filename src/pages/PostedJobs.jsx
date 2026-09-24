@@ -1,5 +1,6 @@
 import AdminNavbar from "../components/AdminNavbar";
 import { Link } from "react-router-dom";
+import "./PostedJobs.css";
 
 function PostedJobs() {
   const jobs =
@@ -9,28 +10,34 @@ function PostedJobs() {
     <>
       <AdminNavbar />
 
-      <div className="container my-4">
+      <div className="posted-jobs-page">
 
-        <div className="d-flex justify-content-between align-items-center mb-4">
-          <h2 className="fw-bold text-primary">
-            Posted Jobs
-          </h2>
+        {/* Header */}
+        <div className="posted-jobs-header">
 
-          <Link
-            to="/admin"
-            className="btn btn-dark"
-          >
-            ← Dashboard
-          </Link>
+          <div>
+            <h1>💼 Posted Jobs</h1>
+            <p>View all jobs posted by admin</p>
+          </div>
+
         </div>
 
+        {/* Total Jobs */}
         <div className="alert alert-info">
           Total Posted Jobs : <b>{jobs.length}</b>
         </div>
+        <Link
+            to="/admin"
+            className="btn btn-dark dashboard-btn"
+          >
+            ← Dashboard
+          </Link>
 
         {jobs.length === 0 ? (
+
           <div className="card shadow border-0">
             <div className="card-body text-center p-5">
+
               <h4 className="text-muted">
                 No Jobs Posted Yet
               </h4>
@@ -41,21 +48,27 @@ function PostedJobs() {
               >
                 Add First Job
               </Link>
+
             </div>
           </div>
+
         ) : (
+
           <div className="row">
 
             {jobs.map((job) => (
+
               <div
                 key={job.id}
                 className="col-lg-4 col-md-6 mb-4"
               >
+
                 <div className="card shadow h-100 border-0">
 
                   <div className="card-body">
 
                     <div className="d-flex justify-content-between mb-2">
+
                       <h5 className="fw-bold">
                         {job.title}
                       </h5>
@@ -63,6 +76,7 @@ function PostedJobs() {
                       <span className="badge bg-success">
                         {job.type}
                       </span>
+
                     </div>
 
                     <h6 className="text-primary">
@@ -86,6 +100,7 @@ function PostedJobs() {
                     </p>
 
                     <div className="mb-3">
+
                       {job.skills &&
                         job.skills
                           .split(",")
@@ -97,6 +112,7 @@ function PostedJobs() {
                               {skill.trim()}
                             </span>
                           ))}
+
                     </div>
 
                     <p className="text-muted">
@@ -106,10 +122,13 @@ function PostedJobs() {
                   </div>
 
                 </div>
+
               </div>
+
             ))}
 
           </div>
+
         )}
 
       </div>

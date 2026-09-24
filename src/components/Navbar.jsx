@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Collapse } from "bootstrap";
 import { useState } from "react";
+import "../styles/Navbar.css";
 
 function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -9,8 +10,7 @@ function Navbar() {
     localStorage.getItem("loggedUser")
   );
 
-  const isAdmin =
-    loggedUser?.role === "admin";
+  const isAdmin = loggedUser?.role === "admin";
 
   const closeNavbar = () => {
     const navbar =
@@ -41,15 +41,18 @@ function Navbar() {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow sticky-top">
-      <div className="container-fluid px-3">
+      <div className="container-fluid px-4">
 
+        {/* Logo */}
         <Link
-          className="navbar-brand fw-bold fs-4"
+          className="navbar-brand fw-bold"
           to="/"
+          onClick={closeNavbar}
         >
-          JobPortal
+          🚀 JobPortal
         </Link>
 
+        {/* Mobile Toggle */}
         <button
           className="navbar-toggler"
           type="button"
@@ -64,6 +67,7 @@ function Navbar() {
           id="navbarNav"
         >
 
+          {/* Left Menu */}
           <ul className="navbar-nav mx-auto">
 
             <li className="nav-item">
@@ -132,9 +136,9 @@ function Navbar() {
 
           </ul>
 
+          {/* Right Side */}
           {!loggedUser ? (
-
-            <div className="d-flex gap-2">
+            <div className="d-flex flex-column flex-lg-row gap-2">
 
               <Link
                 to="/login"
@@ -161,13 +165,11 @@ function Navbar() {
               </Link>
 
             </div>
-
           ) : (
-
             <div className="position-relative">
 
               <button
-                className="btn btn-light"
+                className="btn btn-light fw-semibold"
                 onClick={() =>
                   setShowDropdown(!showDropdown)
                 }
@@ -192,7 +194,9 @@ function Navbar() {
                         <Link
                           className="dropdown-item"
                           to="/profile"
-                          onClick={closeNavbar}
+                          onClick={() =>
+                            setShowDropdown(false)
+                          }
                         >
                           My Profile
                         </Link>
@@ -202,7 +206,9 @@ function Navbar() {
                         <Link
                           className="dropdown-item"
                           to="/saved-jobs"
-                          onClick={closeNavbar}
+                          onClick={() =>
+                            setShowDropdown(false)
+                          }
                         >
                           Saved Jobs
                         </Link>
@@ -212,7 +218,9 @@ function Navbar() {
                         <Link
                           className="dropdown-item"
                           to="/my-applications"
-                          onClick={closeNavbar}
+                          onClick={() =>
+                            setShowDropdown(false)
+                          }
                         >
                           My Applications
                         </Link>
@@ -226,7 +234,6 @@ function Navbar() {
                         <Link
                           className="dropdown-item"
                           to="/admin/profile"
-                          onClick={closeNavbar}
                         >
                           Profile
                         </Link>
@@ -236,7 +243,6 @@ function Navbar() {
                         <Link
                           className="dropdown-item"
                           to="/admin/jobs"
-                          onClick={closeNavbar}
                         >
                           Manage Jobs
                         </Link>
@@ -246,7 +252,6 @@ function Navbar() {
                         <Link
                           className="dropdown-item"
                           to="/admin/users"
-                          onClick={closeNavbar}
                         >
                           Users
                         </Link>
@@ -256,7 +261,6 @@ function Navbar() {
                         <Link
                           className="dropdown-item"
                           to="/admin/applications"
-                          onClick={closeNavbar}
                         >
                           Applications
                         </Link>
@@ -281,11 +285,9 @@ function Navbar() {
               )}
 
             </div>
-
           )}
 
         </div>
-
       </div>
     </nav>
   );

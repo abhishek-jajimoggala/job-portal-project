@@ -1,0 +1,210 @@
+/* =========================
+   DASHBOARD MAIN
+========================= */
+
+.admin-dashboard {
+  width: 100%;
+  min-height: 100vh;
+  padding: 80px 20px 20px;
+  background: #f8fafc;
+  margin-left: 0;
+  transition: all 0.3s ease;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.dashboard-hero {
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  padding: 30px;
+  border-radius: 20px;
+  color: white;
+}
+
+.dashboard-hero img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* =========================
+   STATISTICS CARDS
+========================= */
+
+.modern-card {
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  height: 100%;
+  transition: 0.3s;
+}
+
+.modern-card:hover {
+  transform: translateY(-5px);
+}
+
+.blue-card {
+  background: #2563eb;
+}
+
+.green-card {
+  background: #16a34a;
+}
+
+.cyan-card {
+  background: #0891b2;
+}
+
+.orange-card {
+  background: #ea580c;
+}
+
+.red-card {
+  background: #dc2626;
+}
+
+.purple-card {
+  background: #7c3aed;
+}
+
+/* =========================
+   ACTIVITY CARDS
+========================= */
+
+.activity-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.activity-icon {
+  font-size: 28px;
+}
+
+.users {
+  background: #2563eb;
+}
+
+.jobs {
+  background: #16a34a;
+}
+
+.apps {
+  background: #0891b2;
+}
+
+.shortlist {
+  background: #7c3aed;
+}
+
+.reject {
+  background: #dc2626;
+}
+
+/* =========================
+   CARDS & TABLES
+========================= */
+
+.card {
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 992px) {
+  .admin-dashboard {
+    padding: 80px 25px 25px;
+  }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 992px) {
+  .admin-dashboard {
+    padding: 80px 15px 15px;
+  }
+
+  .dashboard-hero {
+    text-align: center;
+  }
+
+  .dashboard-hero img {
+    width: 140px !important;
+    margin-top: 15px;
+  }
+
+  .modern-card {
+    margin-bottom: 15px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 80px 12px 12px;
+  }
+
+  .dashboard-hero {
+    padding: 20px;
+  }
+
+  .dashboard-hero h1 {
+    font-size: 24px;
+  }
+
+  .activity-card {
+    padding: 14px;
+  }
+
+  .activity-icon {
+    font-size: 22px;
+  }
+
+  .modern-card h2 {
+    font-size: 24px;
+  }
+
+  .modern-card p {
+    font-size: 14px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .admin-dashboard {
+    padding: 75px 10px 10px;
+  }
+
+  .dashboard-hero h1 {
+    font-size: 20px;
+  }
+
+  .dashboard-hero img {
+    width: 100px !important;
+  }
+
+  .activity-card {
+    flex-direction: row;
+    padding: 12px;
+  }
+}   

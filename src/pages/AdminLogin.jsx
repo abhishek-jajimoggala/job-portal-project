@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import jobImage from "../assets/jobs.jpg";
+import "../styles/Login.css";
 
 function AdminLogin() {
   const navigate = useNavigate();
@@ -21,95 +23,88 @@ function AdminLogin() {
     e.preventDefault();
 
     if (
-  form.email === "admin@jobportal.com" &&
-  form.password === "admin123"
-) {
-  localStorage.setItem("admin", "true");
+      form.email === "admin@jobportal.com" &&
+      form.password === "admin123"
+    ) {
+      const adminUser = {
+        name: "Admin",
+        email: "admin@jobportal.com",
+        role: "admin",
+      };
 
-  localStorage.setItem(
-  "loggedUser",
-  JSON.stringify({
-    name: "Admin",
-    email: "admin@jobportal.com",
-    role: "admin",
-  })
-);
+      localStorage.setItem(
+        "loggedUser",
+        JSON.stringify(adminUser)
+      );
 
-  toast.success("Admin Login Successful");
+      localStorage.setItem("admin", "true");
 
-  navigate("/admin");
+      toast.success("Admin Login Successful");
 
-  // window.location.reload();
-} else {
-  toast.error("Invalid Admin Credentials");
-}
+      navigate("/admin");
+    } else {
+      toast.error("Invalid Admin Credentials");
+    }
   };
 
   return (
-    <div className="container py-5">
-      <div className="row justify-content-center">
+    <div className="login-page">
+      <div className="login-container">
 
-        <div className="col-md-5">
+        <div className="login-left">
+          <div className="overlay">
+            <h1>
+              Admin <span style={{ color: "#60a5fa" }}>Portal</span>
+            </h1>
 
-          <div className="card shadow-lg border-0">
+            <p>
+              Manage jobs, users and applications
+              from one secure dashboard.
+            </p>
 
-            <div className="card-body p-4">
+            <img
+              src={jobImage}
+              alt="Admin Portal"
+              className="login-image"
+            />
+          </div>
+        </div>
 
-              <h2 className="text-center mb-4">
-                Admin Login
-              </h2>
+        <div className="login-right">
+          <div className="login-card">
 
-              <form onSubmit={handleSubmit}>
+            <h2>Admin Login</h2>
 
-                <div className="mb-3">
-                  <label>Email</label>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="email"
+                name="email"
+                placeholder="Admin Email"
+                className="form-control"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
 
-                  <input
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    placeholder="Admin Email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                className="form-control"
+                value={form.password}
+                onChange={handleChange}
+                required
+              />
 
-                <div className="mb-3">
-                  <label>Password</label>
-
-                  <input
-                    type="password"
-                    name="password"
-                    className="form-control"
-                    placeholder="Password"
-                    value={form.password}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                {/* <div className="alert alert-info mt-3">
-                <strong>Demo Admin Credentials</strong>
-                  <br />
-                Email: <b>admin@jobportal.com</b>
-                  <br />
-                Password: <b>admin123</b>
-                </div> */}
-
-
-                <button
-                  className="btn btn-primary w-100"
-                >
-                  Login
-                </button>
-
-              </form>
-
-            </div>
+              <button
+                type="submit"
+                className="btn btn-primary w-100"
+              >
+                Login
+              </button>
+            </form>
 
           </div>
-
         </div>
 
       </div>

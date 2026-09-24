@@ -1,5 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
+import "./AdminDashboard.css";
 
 function AdminDashboard() {
 
@@ -36,7 +37,7 @@ function AdminDashboard() {
     <>
       <AdminNavbar />
 
-      <div className="container-fluid p-4">
+      <div className="admin-dashboard">
 
         {/* Hero Section */}
 <div className="dashboard-hero mb-5">
@@ -266,91 +267,6 @@ function AdminDashboard() {
 
 </div>
 
-        <div className="card shadow border-0 mt-5">
-  <div className="card-body">
-
-    <h3 className="fw-bold mb-4">
-      Quick Access
-    </h3>
-
-    <div className="row g-4">
-
-      <div className="col-md-4">
-        <Link
-          to="/admin/jobs"
-          className="text-decoration-none"
-        >
-          <div className="quick-card jobs-card">
-            <h5>💼 Manage Jobs</h5>
-            <p>Create and manage jobs</p>
-          </div>
-        </Link>
-      </div>
-
-      <div className="col-md-4">
-        <Link
-          to="/admin/applications"
-          className="text-decoration-none"
-        >
-          <div className="quick-card app-card">
-            <h5>📄 Applications</h5>
-            <p>Review applications</p>
-          </div>
-        </Link>
-      </div>
-
-      <div className="col-md-4">
-        <Link
-          to="/admin/users"
-          className="text-decoration-none"
-        >
-          <div className="quick-card user-card">
-            <h5>👥 Users</h5>
-            <p>Manage registered users</p>
-          </div>
-        </Link>
-      </div>
-
-      <div className="col-md-4">
-        <Link
-          to="/admin/posted-jobs"
-          className="text-decoration-none"
-        >
-          <div className="quick-card post-card">
-            <h5>📢 Posted Jobs</h5>
-            <p>View all jobs</p>
-          </div>
-        </Link>
-      </div>
-
-      <div className="col-md-4">
-        <Link
-          to="/admin/shortlisted"
-          className="text-decoration-none"
-        >
-          <div className="quick-card short-card">
-            <h5>✅ Shortlisted</h5>
-            <p>Selected candidates</p>
-          </div>
-        </Link>
-      </div>
-
-      <div className="col-md-4">
-        <Link
-          to="/admin/rejected"
-          className="text-decoration-none"
-        >
-          <div className="quick-card reject-card">
-            <h5>❌ Rejected</h5>
-            <p>Rejected candidates</p>
-          </div>
-        </Link>
-      </div>
-
-    </div>
-
-  </div>
-</div>
 
             {/* Dashboard Overview */}
       {/*  */}

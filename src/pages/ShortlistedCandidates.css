@@ -1,0 +1,152 @@
+.shortlisted-page{
+  width:100%;
+  min-height:100vh;
+  padding:80px 20px 20px;
+  background:linear-gradient(135deg,#e8fff2,#f8fffc);
+}
+
+.shortlisted-header{
+  background:linear-gradient(135deg,#198754,#20c997);
+  border-radius:25px;
+  color:white;
+  padding:35px;
+  margin-bottom:30px;
+  box-shadow:0 10px 30px rgba(25,135,84,.25);
+}
+
+.shortlisted-card{
+  width:100%;
+  border:none !important;
+  border-radius:20px;
+  margin-bottom:35px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  transition:.3s;
+}
+
+.shortlisted-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.candidate-img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  border:5px solid #198754;
+}
+
+.candidate-name{
+  font-size:28px;
+  font-weight:700;
+  color:#166534;
+}
+
+.custom-modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.custom-modal-content{
+  width:90%;
+  max-width:700px;
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden;
+  animation:popup .3s ease;
+}
+
+.custom-modal-header{
+  background:#198754;
+  color:white;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.custom-modal-body{
+  padding:25px;
+  max-height:75vh;
+  overflow-y:auto;
+}
+
+.modal-profile-img{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  object-fit:cover;
+  border:5px solid #198754;
+}
+
+@keyframes popup{
+  from{
+    transform:scale(.8);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+@media(max-width:768px){
+
+  .shortlisted-page{
+    padding:80px 12px 12px;
+  }
+
+  .shortlisted-header{
+    padding:20px;
+    text-align:center;
+  }
+
+  .candidate-name{
+    font-size:22px;
+  }
+
+  .candidate-img{
+    width:100px;
+    height:100px;
+    margin-bottom:15px;
+  }
+
+  .btn{
+    width:100%;
+    margin-top:10px;
+  }
+}
+.shortlisted-page{
+  width:100%;
+  min-height:100vh;
+  padding:80px 15px 20px;
+  background:linear-gradient(135deg,#e8fff2,#f8fffc);
+}
+
+.shortlisted-page .container-fluid{
+  width:100%;
+  max-width:100%;
+  margin:0;
+  padding-left:0;
+  padding-right:0;
+}
+
+.shortlisted-card{
+  width:100%;
+  margin-bottom:35px;
+}
+
+.shortlisted-header{
+  width:100%;
+  margin-bottom:35px;
+}
